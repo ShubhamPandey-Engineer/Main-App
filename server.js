@@ -21,8 +21,8 @@ let connect=mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true})
 
 
 //Get the blogs
-app.get("/",(req,res)=>{
-    model.find({},(err,blogs)=>{
+app.get("/", async (req,res)=>{
+  await  model.find({},(err,blogs)=>{
         if(err)
         {
             console.log(err)
@@ -47,8 +47,8 @@ app.post("/blog/like/:blogid",async(req,res)=>
 
 
 //Get the blogs
-app.get("/blog/Allblogs",(req,res)=>{
-    model.find({},(err,blogs)=>{
+app.get("/blog/Allblogs",async (req,res)=>{
+  await  model.find({},(err,blogs)=>{
         if(err)
         {
             console.log(err)
@@ -74,13 +74,13 @@ app.post("/blog/like/:blogid",async(req,res)=>
 
 
 //get new post 
-app.get("/blog/create",(req,res)=>{
-    res.render("create");
+app.get("/blog/create", async (req,res)=>{
+ await   res.render("create");
 })
 
 // post new post
-app.post("/blog/create",(req,res)=>{
-model.create({
+app.post("/blog/create",async (req,res)=>{
+await model.create({
     title:req.body.blog_title,
     category:req.body.blog_category,
     content:req.body.blog_content,
@@ -96,17 +96,16 @@ model.create({
     }
 })
 
-res.redirect("Allblogs");
-console.log(body);
-res.render("blogs",{allblogs:blog})
+await res.redirect("Allblogs");
+await res.render("blogs",{allblogs:blog})
 })
 
 
 //Blog detail
-app.get("/blog/:id",(req,res)=>{
+app.get("/blog/:id",async (req,res)=>{
 const blogId=req.params.id;
 //get the specfic blog 
-var myblog=model.findById(blogId,(err,blog)=>{
+var myblog=await model.findById(blogId,(err,blog)=>{
     res.render("Detail",{blog:blog})
 })
 })
@@ -114,8 +113,8 @@ var myblog=model.findById(blogId,(err,blog)=>{
 
 //Edit blog-Get
 
-app.get("/blog/:id/edit",(req,res)=>{
-    model.findById(req.params.id,(err,myblog)=>{
+app.get("/blog/:id/edit",async (req,res)=>{
+   await model.findById(req.params.id,(err,myblog)=>{
         if(!err)
         {
             res.render("edit",{blog:myblog})
@@ -124,19 +123,19 @@ app.get("/blog/:id/edit",(req,res)=>{
 })
 
 //Edit  blog-Post
-app.post("/blog/:id",(req,res)=>{
+app.post("/blog/:id",async (req,res)=>{
     let blogUpdate={
         title:req.body.blog_title,
         category:req.body.blog_category,
         content:req.body.blog_content
     }
-    model.findByIdAndUpdate(req.params.id,blogUpdate,(err,updatedBlog)=>{
+  await  model.findByIdAndUpdate(req.params.id,blogUpdate,(err,updatedBlog)=>{
    if(!err)
    {
        res.redirect("/blog/Allblogs");
    }
    else{
-       res.redirect("blog/:req.params.id/edit")
+        res.redirect("blog/:req.params.id/edit")
    }
     })
 })
@@ -144,14 +143,14 @@ app.post("/blog/:id",(req,res)=>{
 
 
 //Delete  route
-app.get("/blog/:id/delete",(req,res)=>{
-    model.findByIdAndDelete(req.params.id,(err)=>{
+app.get("/blog/:id/delete",async (req,res)=>{
+   await model.findByIdAndDelete(req.params.id,(err)=>{
         if(!err)
         {
             res.redirect("/blog/Allblogs")
         }
         else{
-            res.send("Cannot delete the respective post")
+      res.send("Cannot delete the respective post")
         }
     })
 })
