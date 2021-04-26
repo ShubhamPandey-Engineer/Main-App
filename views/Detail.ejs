@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+<div  class="container">
+    <div class="jumbotron ">
+        <div class="container">
+            <h1 class="display-4 text-center font-weight-normal"><%= blog.title %></h1>
+            <hr class="my-2">
+        </div>
+    
+
+    <div class="card border-dark  col-12 ">
+        <div class="card-body ">
+          <h5 class="card-title"><%= blog.category %></h5>
+          <p><%= blog.content %></p>
+        </div>
+        <div class="d-flex justify-content-center  p-2">
+        <a href="/blog/<%= blog._id %>/delete"><button  class="btn btn-md btn-outline-danger m-2"> Delete </button></a>
+        <a class="btn btn-md btn-outline-info m-2" href="/blog/<%= blog._id %>/edit" role="link">Edit</a>
+        </div>
+</div>
+ <%- include('partials/footer') %>

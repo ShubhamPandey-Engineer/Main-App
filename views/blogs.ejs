@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+<div  class="container">
+    <div class="jumbotron ">
+        <div class="container">
+            <h1 class="display-4 text-center font-weight-normal">All blogs</h1>
+            <hr class="my-2">
+            <p class="lead">
+                <a class="btn btn-primary btn-md" href="/blog/create" role="link">Create new blog</a>
+            </p>
+        </div>
+    </div>
+    <div id="blog_status"></div>
+
+<div class="row justify-content-between">
+
+<% blogs.forEach((ele)=>{ %>
+    <div class="card border-dark m-3 p-3 col-md-4">
+
+      
+        <div class="card-header text-center font-weight-bold"><%= ele.title %></div>
+        <div class="card-body p-0">
+            <input type="text" class="blog_id" hidden value="<%= ele._id %>">
+          <label class="card-title d-block text-center m-1 "><%= ele.category %></label>
+          <label class="card-title d-block text-center m-1"><%= ele.likes%></label>
+        </div>
+        <div class="d-flex justify-content-center  p-2">
+        <a href="/blog/<%= ele._id %>"><button  class="btn btn-md btn-outline-dark m-2"> View </button></a>
+        <button type="button" class=" blog_like btn btn-outline-info btn-md m-2" data-blogid="<%= ele._id %>">Like</button>
+        </div>
+        <label class="card-title d-block"><%= ele.createdAt.toString().substring(0,15) %></label>
+
+      </div>
+<% }) %>
+</div>
+</div>
+
+<script src="../scripts/main.js"></script>
+<%- include('partials/footer') %>
+
