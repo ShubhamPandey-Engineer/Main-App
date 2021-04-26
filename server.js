@@ -18,6 +18,34 @@ let connect=mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true})
 
 
 
+
+
+//Get the blogs
+app.get("/",(req,res)=>{
+    model.find({},(err,blogs)=>{
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            res.render("blogs",{blogs:blogs})
+        }
+    })
+})
+
+
+//Like a Blog
+
+app.post("/blog/like/:blogid",async(req,res)=>
+{   
+  let blog=  await model.findOne({_id:req.params.blogid})
+  blog.likes++;
+  blog.save();
+  res.send("Liked")
+  
+})
+
+
 //Get the blogs
 app.get("/blog/Allblogs",(req,res)=>{
     model.find({},(err,blogs)=>{
