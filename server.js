@@ -128,7 +128,7 @@ app.get("/blog/:id/delete",(req,res)=>{
     })
 })
 const hostname='0.0.0.0'
-app.listen(3000,hostname,(err)=>{
+app.listen(process.env.PORT || 3000,hostname,(err)=>{
     if(!err)
     {
         console.log("server is fine!!!");
