@@ -56,7 +56,7 @@ app.get("/blog/Allblogs",async (req,res)=>{
         else{
             res.render("blogs",{blogs:blogs})
         }
-    })
+    }).sort({createAt:1})
 })
 
 

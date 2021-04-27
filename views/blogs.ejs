@@ -24,8 +24,10 @@
           <label class="card-title d-block text-center m-1"><%= ele.likes%></label>
         </div>
         <div class="d-flex justify-content-center  p-2">
-        <a href="/blog/<%= ele._id %>"><button  class="btn btn-md btn-outline-dark m-2"> View </button></a>
-        <button type="button" class=" blog_like btn btn-outline-info btn-md m-2" data-blogid="<%= ele._id %>">Like</button>
+        <a href="/blog/<%= ele._id %>"><button  style="width: 38px;height: 38px;" class="btn btn-md btn-dark m-2"><i class="fa fa-external-link" aria-hidden="true"></i>
+        </button></a>
+        <button type="button" id="blog_like" style="color:#FFF;background-color:crimson;width: 38px;height: 38px;" class=" btn-outline-danger   blog_like btn  btn-md m-2" data-blogid="<%= ele._id %>"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+        </button>
         </div>
         <label class="card-title d-block"><%= ele.createdAt.toString().substring(0,15) %></label>
 
@@ -33,7 +35,4 @@
 <% }) %>
 </div>
 </div>
-
-<script src="../scripts/main.js"></script>
-<%- include('partials/footer') %>
-
+ 
