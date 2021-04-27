@@ -35,3 +35,33 @@ $.ajax({
 })
 })
 
+
+
+//Delete blog
+
+$("#delete_confirm").on("click",()=>{
+  console.log('o')
+  const deleteTitle=$("#delete_title").val()
+  const btn=document.getElementById("delete_confirm")
+  const id=btn.getAttribute("data-blogid")
+  const originalTitle=btn.getAttribute("data-blogtitle")
+  console.log(originalTitle,deleteTitle)
+if(deleteTitle === originalTitle)
+{
+$.ajax({
+  url:`/blog/delete/${id}`,
+  method:"POST",
+  success:function(mess){
+console.log(mess)
+window.location.href="/"
+},
+failure:function(){
+  console.log('fail')
+}
+})
+}
+else{
+  console.log('no delete operation')
+}
+})
+

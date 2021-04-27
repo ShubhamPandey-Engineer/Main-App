@@ -132,11 +132,12 @@ app.post("/blog/:id",async (req,res)=>{
 
 
 //Delete  route
-app.get("/blog/:id/delete",async (req,res)=>{
+app.post("/blog/delete/:id",async (req,res)=>{
    await model.findByIdAndDelete(req.params.id,(err)=>{
         if(!err)
         {
-            res.redirect("/blog/Allblogs")
+         //  res.redirect("/blog/Allblogs")
+         res.send("Post Delete !!!")
         }
         else{
       res.send("Cannot delete the respective post")
