@@ -13,9 +13,9 @@
           <p><%= blog.content %></p>
         </div>
         <div class="d-flex justify-content-center  p-2">
-        <a href="/blog/<%= blog._id %>/delete"><button  class="btn btn-md btn-outline-danger m-2"> <i class="fa fa-trash" aria-hidden="true"></i>
+        <a href="/blog/<%= blog._id %>/delete" data-toogle="tooltip" title="Delete this blog!!!"><button  class="btn btn-md btn-outline-danger m-2"> <i class="fa fa-trash" aria-hidden="true"></i>
         </button></a>
-        <a class="btn btn-md btn-outline-info m-2" href="/blog/<%= blog._id %>/edit" role="link"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <a class="btn btn-md btn-outline-info m-2" data-toogle="tooltip" title="Edit this blog" href="/blog/<%= blog._id %>/edit" role="link"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </a>
         </div>
 </div>

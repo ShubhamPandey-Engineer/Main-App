@@ -8,25 +8,29 @@ $("#blog_success").hide();
 },1500)
 
 })
-$(".blog_like").on("click",function(event)
+$(".blog_like").on("click", async function(event)
 {
-    
-let id=$(this).attr("data-blogid")
+  let id= await $(this).attr("data-blogid")
   
+
 $.ajax({
     url:`/blog/like/${id}`,
     method:"POST",
-    success:function(data){
-        const htmlCont=` <div style="position:absolute;z-index:1"  class="alert alert-danger  w-75 alert-dismissible fade show" role="alert">
+    success:function(totalLikes){
+      event.target.parentNode.parentNode.parentNode.children[1].querySelector(".blog_likes").textContent=totalLikes
+        const successContent=`<div style="position:fixed;top:15vh;z-index:1;left: 0;right: 0;text-align:center"  class="alert alert-danger  m-auto alert-dismissible fade show m-0" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
         </button>
-        <strong>Blog Post liked!!!</strong> 
+        <strong class="text-center">Post Liked !!! <i class="fa fa-heart" aria-hidden="true"></i>
+        </strong> 
       </div>`;
-      $("#blog_status").html(htmlCont)
-      setTimeout(()=>{
- $("#blog_status").fadeOut()
-      },1500)
+    $("#blog_status").show()
+
+    
+     $("#blog_status").html(successContent)
+     setTimeout(()=>{
+ $("#blog_status").hide()
+      },2000)
     }
 })
 })

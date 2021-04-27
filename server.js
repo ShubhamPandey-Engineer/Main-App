@@ -30,7 +30,7 @@ app.get("/", async (req,res)=>{
         else{
             res.render("blogs",{blogs:blogs})
         }
-    })
+    }).limit(-6)
 })
 
 
@@ -41,7 +41,7 @@ app.post("/blog/like/:blogid",async(req,res)=>
   let blog=  await model.findOne({_id:req.params.blogid})
   blog.likes++;
   blog.save();
-  res.send("Liked")
+  res.send(blog.likes.toString())
   
 })
 
@@ -59,17 +59,6 @@ app.get("/blog/Allblogs",async (req,res)=>{
     }).sort({createAt:1})
 })
 
-
-//Like a Blog
-
-app.post("/blog/like/:blogid",async(req,res)=>
-{   
-  let blog=  await model.findOne({_id:req.params.blogid})
-  blog.likes++;
-  blog.save();
-  res.send("Liked")
-  
-})
 
 
 
