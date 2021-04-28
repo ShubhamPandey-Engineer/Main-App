@@ -30,7 +30,7 @@ app.get("/", async (req,res)=>{
         else{
             res.render("blogs",{blogs:blogs})
         }
-    }).limit(-6)
+    }).limit(-6).sort({"createdAt":-1})
 })
 
 
