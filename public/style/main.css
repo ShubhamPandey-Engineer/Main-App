@@ -71,3 +71,8 @@
     font-family:  Helvetica, sans-serif;
     word-spacing: 5px;
 }
+
+.blog_detail_date{
+    line-height:60px;
+    margin:0;
+}

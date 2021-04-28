@@ -41,17 +41,17 @@
           <p class="blog_detail_content"><%= blog.content %></p>
           
         </div>
-        <label class="card-title blog_date  "><%= blog.createdAt.toString().substring(0,15) %></label>
+
+        <div class="d-flex justify-content-between">
+        <label class="card-title blog_date blog_detail_date m-0  "><%= blog.createdAt.toString().substring(0,15) %></label>
 
         <div class="d-flex justify-content-center  p-2">
-            <!--<a href="/blog/<%= blog._id %>/delete"  data-toogle="model" data-target="#mymodal" data-toogle="tooltip" title="Delete this blog!!!"><button  class="btn btn-md btn-outline-danger m-2"> <i class="fa fa-trash" aria-hidden="true"></i>
-            </button></a>-->
 
     <button  class="btn btn-md btn-outline-danger m-2" id="delete_post" data-toggle="modal" data-target="#myModal">  <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
         <a class="btn btn-md btn-outline-info m-2" data-toogle="tooltip" title="Edit this blog" href="/blog/<%= blog._id %>/edit" role="link"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </a>
-        </div>
+        </div></div>
 </div>
 <script defer src="/scripts/main.js"></script>
  <%- include('partials/footer') %>
