@@ -1,8 +1,8 @@
 <%- include('partials/header') %>
-<div  class="container">
-    <div class="jumbotron ">
+<div  class="container-fluid">
+    <div class="jumbotron page_jumbo ">
         <div class="container">
-            <h1 class="display-4 text-center font-weight-normal">All blogs</h1>
+            <h1 class="display-4 text-center  blog_header font-weight-normal">All blogs</h1>
             <hr class="my-2">
             <p class="lead">
                 <a class="btn btn-primary btn-md" href="/blog/create" role="link">Create new blog</a>
@@ -16,22 +16,22 @@
 <div class="row justify-content-between">
 
 <% blogs.forEach((ele)=>{ %>
-    <div class="card border-dark m-3 p-3 col-md-4">
+    <div class="card  m-3 p-3 col-md-4 ">
 
       
-        <div class="card-header text-center font-weight-bold"><%= ele.title %></div>
+        <div class="card-header text-center blog_title  font-weight-bold"><%= ele.title %></div>
         <div class="card-body p-0">
             <input type="text" class="blog_id" hidden value="<%= ele._id %>">
-          <label class="card-title d-block text-center m-1 "><%= ele.category %></label>
+          <label class="card-title d-block text-center m-1 blog_category "><%= ele.category %></label>
         <div class="d-flex justify-content-center">  <label  class="blog_likes card-title d-block text-center m-1"><%= ele.likes%>  </label><i class="fa fa-thumbs-up text-danger m-2" aria-hidden="true"></i></div>
         </div>
         <div class="d-flex justify-content-center  p-2" >
         <a  data-toogle="tooltip" title="View this blog" href="/blog/<%= ele._id %>"><button  style="width: 38px;height: 38px;" class="btn btn-md btn-dark m-2"><i class="fa fa-external-link" aria-hidden="true"></i>
         </button></a>
-        <button type="button" data-toogle="tooltip"  title="Like this blog!!!"  style="z-index:999;color:#FFF;background-color:crimson;width: 38px;height: 38px;" class=" btn-outline-danger   blog_like btn  btn-md m-2" data-blogid="<%= ele._id %>"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+        <button type="button" data-toogle="tooltip"  title="Like this blog!!!"  style="color:#FFF;background-color:crimson;width: 38px;height: 38px;" class=" btn-outline-danger   blog_like btn  btn-md m-2" data-blogid="<%= ele._id %>"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
         </button>
         </div>
-        <label class="card-title d-block"><%= ele.createdAt.toString().substring(0,15) %></label>
+        <label class="card-title blog_date  d-block"><%= ele.createdAt.toString().substring(0,15) %></label>
 
       </div>
 <% }) %>

@@ -27,22 +27,26 @@
   </div>
   
 
-<div  class="container">
+<div  class="container-fluid">
     <div class="jumbotron ">
         <div class="container">
-            <h1 class="display-4 text-center font-weight-normal"><%= blog.title %></h1>
+            <h3 class="font-weight-bolder w-50 m-auto  blog_detail_title font-weight-normal"><%= blog.title %></h3>
             <hr class="my-2">
         </div>
     
 
     <div class="card border-dark  col-12 ">
-        <div class="card-body ">
-          <h5 class="card-title"><%= blog.category %></h5>
-          <p><%= blog.content %></p>
+        <div class="card-body p-2 ">
+         <label class="p-2 badge">Category:</label> <h4 class="card-title badge"><%= blog.category %></h4>
+          <p class="blog_detail_content"><%= blog.content %></p>
+          
         </div>
+        <label class="card-title blog_date  "><%= blog.createdAt.toString().substring(0,15) %></label>
+
         <div class="d-flex justify-content-center  p-2">
             <!--<a href="/blog/<%= blog._id %>/delete"  data-toogle="model" data-target="#mymodal" data-toogle="tooltip" title="Delete this blog!!!"><button  class="btn btn-md btn-outline-danger m-2"> <i class="fa fa-trash" aria-hidden="true"></i>
             </button></a>-->
+
     <button  class="btn btn-md btn-outline-danger m-2" id="delete_post" data-toggle="modal" data-target="#myModal">  <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
         <a class="btn btn-md btn-outline-info m-2" data-toogle="tooltip" title="Edit this blog" href="/blog/<%= blog._id %>/edit" role="link"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>

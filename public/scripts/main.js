@@ -10,8 +10,7 @@ $("#blog_success").hide();
 })
 
 
-let blogLike=document.querySelector(".blog_like")
-blogLike.addEventListener("click",(event)=>{
+$(".blog_like").on("click",(event)=>{
 {
 
   event.stopPropagation()
@@ -22,6 +21,7 @@ $.ajax({
     method:"POST",
     success:function(totalLikes){
    
+      event.stopPropagation()
 
     event.target.parentNode.parentNode.parentNode.children[1].querySelector(".blog_likes").textContent=totalLikes
         const successContent=`<div style="position:fixed;top:15vh;z-index:1;left: 0;right: 0;text-align:center"  class="alert alert-danger  m-auto alert-dismissible fade show m-0" role="alert">
