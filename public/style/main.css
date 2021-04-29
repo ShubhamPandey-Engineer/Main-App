@@ -1,11 +1,17 @@
+:root{
+    --mainColor: rgba(4, 82, 170, 1);
+    --secondColor: rgb(144, 174, 207);
+
+}
+
 .blog_field_label{
     padding: 4px;
-    text-align: center;
 }
 
 .navbar{
     background-color: rgba(4, 82, 170, 1);
     border-radius: 55px 12px 55px 12px;
+    position: relative;
 }
 .nav-link{
     color:rgb(144, 174, 207)  !important;
@@ -23,7 +29,6 @@
 /* jumbotron */
 .page_jumbo{
     background-color: rgba(26, 89, 161, 0.2)  !important;
-    
 }
 
 
@@ -60,8 +65,25 @@
 
 }
 
+.btn_form{
+    color:#fff !important;
+    font-weight:600 !important;
+    letter-spacing: 2px;
+}
+
+.btn_form_clear{
+    background-color: var(--secondColor) !important;
+    color:#fff !important;
+    font-weight:600 !important;
+    width: 112px;
+}
 
 
+
+/*  */
+#create_blog{
+    background-color:  var(--mainColor) ;
+}
 
 
 
@@ -79,4 +101,14 @@
 .blog_detail_date{
     line-height:60px;
     margin:0;
+    padding-left: 1rem;
+}
+
+
+/* footer */
+#site_footer{
+    height:120px;
+    margin: 3rem auto .6rem auto;
+    background-color: var(--mainColor);
+    border-radius: 6px;
 }

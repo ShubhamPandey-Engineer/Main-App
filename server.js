@@ -1,4 +1,5 @@
-var express=require("express");
+var express=require("express"),
+{check,validationResult} =require("express-validator")
 const app=express();
 
 //importing object schema and model
@@ -20,7 +21,7 @@ let connect=mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true})
 
 
 
-//Get the blogs
+//Get All blogs
 app.get("/", async (req,res)=>{
   await  model.find({},(err,blogs)=>{
         if(err)
@@ -30,7 +31,7 @@ app.get("/", async (req,res)=>{
         else{
             res.render("blogs",{blogs:blogs})
         }
-    }).limit(-6).sort({"createdAt":-1})
+    }).limit(-10).sort({"createdAt":-1})
 })
 
 
@@ -46,18 +47,6 @@ app.post("/blog/like/:blogid",async(req,res)=>
 })
 
 
-//Get the blogs
-app.get("/blog/Allblogs",async (req,res)=>{
-  await  model.find({},(err,blogs)=>{
-        if(err)
-        {
-            console.log(err)
-        }
-        else{
-            res.render("blogs",{blogs:blogs})
-        }
-    }).sort({createAt:1})
-})
 
 
 
@@ -68,7 +57,23 @@ app.get("/blog/create", async (req,res)=>{
 })
 
 // post new post
-app.post("/blog/create",async (req,res)=>{
+app.post("/blog/create", [
+    check("blog_title").notEmpty().withMessage("Enter Blog Title"),
+    check("blog_category").notEmpty().withMessage("Enter Blog Category"),
+    check("blog_content").notEmpty().withMessage("Enter Blog Content"),
+    
+] , async (req,res)=>{
+
+   const title= req.body.blog_title
+   const category= req.body.blog_category
+   const content= req.body.blog_content
+    let errorArr=validationResult(req)
+    if(!errorArr.isEmpty())
+    {
+        res.render("create",{errors:errorArr.array(),userInput:req.body})
+    }
+    else{
+    
 await model.create({
     title:req.body.blog_title,
     category:req.body.blog_category,
@@ -83,11 +88,12 @@ await model.create({
     else{
         console.log(current)
     }
+    })
+    
+await res.redirect("/");
+    }
 })
 
-await res.redirect("Allblogs");
-await res.render("blogs",{allblogs:blog})
-})
 
 
 //Blog detail
@@ -97,6 +103,7 @@ const blogId=req.params.id;
 var myblog=await model.findById(blogId,(err,blog)=>{
     res.render("Detail",{blog:blog})
 })
+
 })
 
 

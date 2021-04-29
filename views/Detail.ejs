@@ -11,16 +11,17 @@
         </div>
         
         <!-- Modal body -->
-        <div class="modal-body p-2 m-2">
-            <div class="form-group justify-content-center text-center">
-       <label class="w-100"  > Enter the blog title in below box :<br><kbd class="text-center"><%= blog.title %></kbd></label>
+        <div class="modal-body p-2 ">
+            <div class="form-group justify-content-center w-100">
+       <label class="w-100"  > Enter the blog title in below box :<br><kbd   class=" p-0"><%= blog.title %></kbd></label>
           <input  type="text" class="form-control p-2 " id="delete_title"></div>
         </div>
         
         <!-- Modal footer -->
         <div class="modal-footer justify-content-center">
             <button type="button" class="btn btn-outline-danger" data-blogid="<%= blog._id %>" data-blogtitle="<%= blog.title %>"  id="delete_confirm" data-dismiss="modal">Confirm <i class="fa fa-trash" aria-hidden="true"></i> </button>
-          <button type="button" class="btn btn-outline-dark" id="delete_cancel" data-dismiss="modal">Cancel  <i class="fa fa-backward" aria-hidden="true"></i> </button>
+          <button type="button" class="btn btn-outline-dark" id="delete_cancel" data-dismiss="modal">Cancel 
+             <i class="fa fa-backward" aria-hidden="true"></i> </button>
         </div>
         
       </div>
@@ -28,18 +29,18 @@
   </div>
   
 
-<div  class="container-fluid">
-    <div class="jumbotron ">
-        <div class="container">
-            <h3 class="font-weight-bolder w-50 m-auto  blog_detail_title font-weight-normal"><%= blog.title %></h3>
+<div  class="container-fluid p-2 mt-2">
+    <div class="jumbotron mt-5 ">
+        <div class="container-fluid">
+            <h3 class="font-weight-bolder m-auto  blog_detail_title pr-3 font-weight-normal"><%= blog.title %></h3>
             <hr class="my-2">
         </div>
-    
+    </div>
 
-    <div class="card border-dark  col-12 ">
+    <div class="card bg-light border-dark  col-12 p-0">
         <div class="card-body p-2 ">
-         <label class="p-2 badge">Category:</label> <h4 class="card-title badge"><%= blog.category %></h4>
-          <p class="blog_detail_content"><%= blog.content %></p>
+         <label class="p-2 badge">Category :</label> <h4 class="card-title badge"><%= blog.category %></h4>
+          <p class="blog_detail_content pl-2"><%= blog.content %></p>
           
         </div>
 
@@ -53,6 +54,6 @@
         <a class="btn btn-md btn-outline-info m-2" data-toogle="tooltip" title="Edit this blog" href="/blog/<%= blog._id %>/edit" role="link"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </a>
         </div></div>
-</div>
+</div></div>
 <script defer src="/scripts/main.js"></script>
  <%- include('partials/footer') %>

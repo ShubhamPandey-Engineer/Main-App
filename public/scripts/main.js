@@ -12,9 +12,29 @@ if(pageTitle == 'Create')
 {
   
 let blogTitle=document.querySelector("#blog_c_title")
-let blogTitleLength=document.querySelector("#blog_c_titleLength")
 let blogCategory=document.querySelector("#blog_c_category")
+let blogContent=document.querySelector("#blog_c_content")
+
+let blogTitleLength=document.querySelector("#blog_c_titleLength")
 let blogCategoryLength=document.querySelector("#blog_c_categoryLength")
+
+//on form submission
+let  createForm=document.querySelector("#create_blog")
+console.log(createForm)
+createForm.addEventListener("click",(event)=>{
+  console.log("btn")
+  let ele= document.querySelectorAll(".form-control") 
+console.log(ele)
+  ele.forEach((ele)=>{
+    if(ele.value =="")
+    {
+      console.log(this)
+      ele.focus()
+    }
+
+  })
+
+})
 
 blogTitle.addEventListener("input",()=>{
   inputLimit(blogTitle,blogTitleLength,40)

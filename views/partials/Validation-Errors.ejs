@@ -1,0 +1,31 @@
+<% if(typeof errors != 'undefined') {  let counter =0; %>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+
+        <div class="modal-body alert-danger  ">
+         <h4 class="text-warning font-weight-bold text-center bg-light  mb-3">Errors:</h4>
+          <% errors.forEach((err)=>{ counter++; %>
+            <div class = "d-block"><span class="badge badge-light m-2"><%= counter %></span><label style="font-size:.8rem;" class=" font-weight-bolder text-danger"><%=  err.msg   %></label></div>
+          <% }) %>
+        <%} %>
+      
+        
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Back 
+              <i class="fa fa-backward" aria-hidden="true"></i> </button>
+        </button>
+        </div>
+        
+      </div></div></div>
+  
+  <script>
+    $(document).ready(()=>{
+      $("#myModal").modal("show")
+    })
+  </script>
+  <!-- The Modal -->
+  
