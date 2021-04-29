@@ -33,6 +33,7 @@ var inputLimit=(inputField,inputFiledLength,maxLimit)=>{
   inputFiledLength.textContent=inputField.value.length
   if(inputField.value.length == maxLimit)
   {
+    inputField.setAttribute("maxLength",maxLimit)
     inputFiledLength.style.color="red"
   }
   else{
