@@ -19,6 +19,7 @@ let blogTitleLength=document.querySelector("#blog_c_titleLength")
 let blogCategoryLength=document.querySelector("#blog_c_categoryLength")
 
 //on form submission
+/*
 let  createForm=document.querySelector("#create_blog")
 console.log(createForm)
 createForm.addEventListener("click",(event)=>{
@@ -35,7 +36,7 @@ console.log(ele)
   })
 
 })
-
+*/
 blogTitle.addEventListener("input",()=>{
   inputLimit(blogTitle,blogTitleLength,40)
   
