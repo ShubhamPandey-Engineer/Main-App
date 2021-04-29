@@ -17,7 +17,7 @@ let blogCategory=document.querySelector("#blog_c_category")
 let blogCategoryLength=document.querySelector("#blog_c_categoryLength")
 
 blogTitle.addEventListener("input",()=>{
-  inputLimit(blogTitle,blogTitleLength,25)
+  inputLimit(blogTitle,blogTitleLength,40)
   
 })
 
