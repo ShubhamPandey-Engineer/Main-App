@@ -1,4 +1,51 @@
 console.log('js connected')
+let pageTitle=document.title
+
+
+
+
+
+//create blog
+
+
+if(pageTitle == 'Create')
+{
+  
+let blogTitle=document.querySelector("#blog_c_title")
+let blogTitleLength=document.querySelector("#blog_c_titleLength")
+let blogCategory=document.querySelector("#blog_c_category")
+let blogCategoryLength=document.querySelector("#blog_c_categoryLength")
+
+blogTitle.addEventListener("input",()=>{
+  inputLimit(blogTitle,blogTitleLength,40)
+  
+})
+
+blogCategory.addEventListener("input",()=>{
+  inputLimit(blogCategory,blogCategoryLength,15)
+
+})
+
+
+
+var inputLimit=(inputField,inputFiledLength,maxLimit)=>{
+    
+  inputFiledLength.textContent=inputField.value.length
+  if(inputField.value.length == maxLimit)
+  {
+    inputFiledLength.style.color="red"
+  }
+  else{
+    inputFiledLength.style.color=""
+
+  }
+
+}
+
+
+
+}
+
 //Submit new blog
 $("#create_blog").on("click",(event)=>{
    // event.preventDefault();
@@ -46,14 +93,36 @@ $.ajax({
 
 //Delete blog
 
-$("#delete_confirm").on("click",()=>{
-  console.log('o')
-  const deleteTitle=$("#delete_title").val()
-  const btn=document.getElementById("delete_confirm")
-  const id=btn.getAttribute("data-blogid")
-  const originalTitle=btn.getAttribute("data-blogtitle")
-  console.log(originalTitle,deleteTitle)
-if(deleteTitle === originalTitle)
+
+
+if(pageTitle == 'Detail')
+{
+
+const deleteTitle=document.querySelector("#delete_title")
+const deleteConfirm=document.querySelector("#delete_confirm")
+deleteConfirm.setAttribute("disabled",true)
+const originalTitle=deleteConfirm.getAttribute("data-blogtitle")
+const id=deleteConfirm.getAttribute("data-blogid")
+
+
+
+deleteTitle.addEventListener("input",(event)=>{
+
+
+if(originalTitle == deleteTitle.value){
+  deleteConfirm.removeAttribute("disabled")
+
+}
+else{
+  deleteConfirm.setAttribute("disabled",true)
+
+}
+
+})
+
+deleteConfirm.addEventListener("click",(event)=>{
+console.log(originalTitle,deleteTitle)
+if(deleteTitle.value == originalTitle)
 {
 $.ajax({
   url:`/blog/delete/${id}`,
@@ -63,7 +132,7 @@ console.log(mess)
 window.location.href="/"
 },
 failure:function(){
-  console.log('fail')
+  console.log('blog not deleted')
 }
 })
 }
@@ -72,3 +141,4 @@ else{
 }
 })
 
+}
