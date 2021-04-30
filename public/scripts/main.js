@@ -10,14 +10,17 @@ if(pageTitle == "Home")
    let data={
      sortValue:value
    }
-  
-    let blogs=fetch(`/blog/sort/${value}`,{method:"GET",headers:{"Content-Type":"application/text"}})
-    let blog =`<div class="  row justify-content-between m-1" id="blogs_row"> `
+   let  blogsRow=document.querySelector("#blogs_row")
+   let blogs=fetch(`/blog/sort/${value}`,{method:"GET",headers:{"Content-Type":"application/text"}})
+    let blog =`<div class="  row justify-content-around m-1" id="blogs_row"> `
+
+   blogsRow.innerHTML='<strong class="p-2 text-primary">Loading ...</strong>'
+
+   setTimeout(()=>{
     
-  let  blogsRow=document.querySelector("#blogs_row")
     blogs.then(d=>d.json()).then(data=>{
       console.log(data)
-      data["blogs"].forEach(element => {
+        data["blogs"].forEach(element => {
       
        blog+=`
          <div class="card  m-3 p-3 col-md-4 ">
@@ -38,14 +41,18 @@ if(pageTitle == "Home")
   </div>`
         blogsRow.innerHTML =blog
 
-      });
+      })
 
 
 
 
     })
+  },600)
+
  }
+
 }
+
 
 
 //create blog
