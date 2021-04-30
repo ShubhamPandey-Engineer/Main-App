@@ -4,6 +4,7 @@ const app=express();
 
 //importing object schema and model
 const model=require("./models/blogmodel")
+restify=require("restify")
 app.set("view engine","ejs");
 var bodyParser=require("body-parser");
 const { all } = require("async");
@@ -12,14 +13,19 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 var mongoose=require("mongoose");
 const { schema } = require("./models/blogmodel");
-
+//app.use(restify.plugins.bodyParser());
 
 const url="mongodb+srv://root:root@cluster0.qcptk.mongodb.net/Demo?retryWrites=true&w=majority"
 let connect=mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true})
 
 
+//Sort blog
 
-
+app.get("/blog/sort/:type",async (req,res)=>{
+    let sortType=req.params.type
+    let blogs=await model.find({}).sort({"createdAt":sortType})
+    res.send(JSON.stringify({blogs}))
+})
 
 //Get All blogs
 app.get("/", async (req,res)=>{
@@ -70,7 +76,7 @@ app.post("/blog/create", [
     let errorArr=validationResult(req)
     if(!errorArr.isEmpty())
     {
-        res.render("create",{errors:errorArr.array(),userInput:req.body})
+        res.render("create",{errors:errorArr.errors,userInput:req.body})
     }
     else{
     

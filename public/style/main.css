@@ -109,6 +109,6 @@
 #site_footer{
     height:120px;
     margin: 3rem auto .6rem auto;
-    background-color: var(--mainColor);
+    background-color: var(--secondColor);
     border-radius: 6px;
 }
