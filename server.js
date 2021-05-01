@@ -35,8 +35,16 @@ app.get("/blog/filter",async (req,res)=>{
 app.get("/blog/sort/:type",async (req,res)=>{
     let sortType=req.params.type
     obj=JSON.parse(sortType)
+    if(obj["data"].length == 0)
+    {
+        let blogs=await model.find()
+        res.send(JSON.stringify({blogs}))
+
+    }
+    else{
     let blogs=await model.find({category:obj["data"]})
     res.send(JSON.stringify({blogs}))
+    }
 })
 
 //Get All blogs

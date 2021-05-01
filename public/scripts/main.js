@@ -25,7 +25,7 @@ hideFilter.addEventListener("click",()=>{
 
 filterBtn.addEventListener("click",(event)=>{
 //call api
-let filter=`<div class='filter_wrapper p-2 justify-content-center'>`
+let filter=`<div class='filter_wrapper p-2 justify-content-center'><label class=" text-center w-100  mb-1 font-weight-bold text-white">Categories:</label>`
 //get all blog category
 fetch(`/blog/filter`,{method:"GET",headers:{"Content-Type":"application/json"}})
 .then(json=>json.json())
