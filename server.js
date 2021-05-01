@@ -22,8 +22,9 @@ let connect=mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true})
 //Filter blogs-show checkboxes
 app.get("/blog/filter",async (req,res)=>{
     let filterType=req.params.type
-  let blogs  =await model.find({},{category:1})
+  let blogs  =await model.distinct("category")
        // console.log(blogs)
+       console.log(blogs)
         res.send(JSON.stringify({blogs}))
 
 })

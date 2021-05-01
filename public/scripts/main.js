@@ -29,10 +29,9 @@ let filter=`<div class='filter_wrapper p-2 justify-content-center'>`
 //get all blog category
 fetch(`/blog/filter`,{method:"GET",headers:{"Content-Type":"application/json"}})
 .then(json=>json.json())
-.then(obj=>{
-  obj["blogs"].forEach(ele=>{
- 
-filter+=`<div><label class="d-block p-2 filter_parent "> <input type="checkbox" name="cat" value='${ele.category}' class="filter_choice form-check-input ml-2"><label class="text" for="cat">${ele.category}</label></label></div>`
+.then(category=>{
+  category["blogs"].forEach(ele=>{
+   filter+=`<div><label class="d-block p-2 filter_parent "> <input type="checkbox" name="cat" value='${ele}' class="filter_choice form-check-input ml-2"><label class="text" for="cat">${ele}</label></label></div>`
   })
 filter+=`</div>`
   filterBox.classList.remove("hide_box")
