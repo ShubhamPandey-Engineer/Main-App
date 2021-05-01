@@ -43,7 +43,7 @@
     background-color: var(--mainColor);
     border-radius: 13px;
     z-index: 99999;
-    bottom: -70px;
+    bottom: -170px;
     position: absolute;
     justify-content: center;
     padding: .6rem;
