@@ -19,11 +19,22 @@ const url="mongodb+srv://root:root@cluster0.qcptk.mongodb.net/Demo?retryWrites=t
 let connect=mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true})
 
 
+//Filter blogs-show checkboxes
+app.get("/blog/filter",async (req,res)=>{
+    let filterType=req.params.type
+  let blogs  =await model.find({},{category:1})
+       // console.log(blogs)
+        res.send(JSON.stringify({blogs}))
+
+})
+
+
 //Sort blog
 
 app.get("/blog/sort/:type",async (req,res)=>{
     let sortType=req.params.type
-    let blogs=await model.find({}).sort({"createdAt":sortType})
+    obj=JSON.parse(sortType)
+    let blogs=await model.find({category:obj["data"]})
     res.send(JSON.stringify({blogs}))
 })
 

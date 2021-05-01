@@ -33,6 +33,50 @@
 
 
 
+/* filter */
+
+.hide_box{
+    display: none;
+}
+
+#filter_box{
+    background-color: var(--mainColor);
+    border-radius: 13px;
+    z-index: 99999;
+    bottom: -70px;
+    position: absolute;
+    justify-content: center;
+    padding: .6rem;
+    transition: all .6s ease-in-out;
+    margin:auto;
+}
+
+.filter_parent{
+    background-color:#FFF;
+    text-align: left;
+    border-radius: 12px;
+    margin:1.2rem;
+
+}
+.text{
+    margin-left: 2rem;
+}
+.filter_choice{
+margin-left: .6rem !important;
+
+padding:.4rem
+}
+.form-check{
+        text-align: justify;
+    width:80%;
+    padding: 1rem !important;
+    margin: 1rem;
+    color:var(--mainColor);
+    font-weight: bold;
+}
+#filter_data{
+    margin:2px;
+}
 
 
 /* card */
