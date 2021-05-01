@@ -68,7 +68,7 @@ padding:.4rem
 }
 .form-check{
         text-align: justify;
-    width:80%;
+    width:100%;
     padding: 1rem !important;
     margin: 1rem;
     color:var(--mainColor);
