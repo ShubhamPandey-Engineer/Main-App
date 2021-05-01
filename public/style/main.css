@@ -75,20 +75,28 @@ padding:.4rem
     font-weight: bold;
 }
 #filter_data{
-    margin:2px;
+    margin:0
 }
 
 
 /* card */
 .card{
     background-color: rgba(26, 89, 130, 0.1)  !important;
+    transition: box-shadow .8s ease-in-out;
 
+}
+.card:hover{
+    box-shadow: 0 0 15px silver;
 }
 .blog_title{
     color:#FFF !important;
     background-color: rgba(4, 82, 170, 2) !important;
     border-radius: 15px !important;
 
+}
+.blog_likes{
+    transition: all .7s ease-in-out;
+    font-weight: bold;
 }
 .blog_header{
     color:gray;
@@ -107,6 +115,12 @@ padding:.4rem
 
 .blog_title{
 
+}
+
+/* buttons */
+.btn_hover:hover{
+    transition: all .5s ease-in-out;
+box-shadow:  0 0 0 8px silver;
 }
 
 .btn_form{
@@ -129,6 +143,9 @@ padding:.4rem
     background-color:  var(--mainColor) ;
 }
 
+#blog_c_form{
+    background-color: rgba(26, 89, 130, 0.1) !important;
+}
 
 
 /*details page*/

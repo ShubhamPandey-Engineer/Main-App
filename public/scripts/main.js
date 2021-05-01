@@ -32,7 +32,7 @@ fetch(`/blog/filter`,{method:"GET",headers:{"Content-Type":"application/json"}})
 .then(obj=>{
   obj["blogs"].forEach(ele=>{
  
-filter+=`<div><label class="d-block p-1 filter_parent "> <input type="checkbox" name="cat" value='${ele.category}' class="filter_choice form-check-input ml-2"><label class="text" for="cat">${ele.category}</label></label></div>`
+filter+=`<div><label class="d-block p-2 filter_parent "> <input type="checkbox" name="cat" value='${ele.category}' class="filter_choice form-check-input ml-2"><label class="text" for="cat">${ele.category}</label></label></div>`
   })
 filter+=`</div>`
   filterBox.classList.remove("hide_box")
