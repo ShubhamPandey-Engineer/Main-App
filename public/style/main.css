@@ -39,11 +39,14 @@
     display: none;
 }
 
+.blur{
+filter: blur(14px);
+}
+
 #filter_box{
     background-color: var(--mainColor);
     border-radius: 13px;
     z-index: 99999;
-    bottom: -170px;
     position: absolute;
     justify-content: center;
     padding: .6rem;

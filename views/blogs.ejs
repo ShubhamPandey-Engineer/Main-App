@@ -21,7 +21,7 @@
             <option value="-1">Latest</option>
             <option value="1">Oldest</option>
           </select>-->
-          <div class="container justify-content-center row pl-5 ml-md-3">
+          <div class="container-fluid justify-content-center row pl-5 ml-md-3">
           <div id="filter_box" class="hide_box m-2  col-auto   " >
              <div class="form-check " id="filter_data">
               </div>
@@ -31,9 +31,9 @@
               </div>
           </div></div>
 </div>
-<div class="row justify-content-center" id="blogs_row">
+<div class="row justify-content-between " id="blogs_row">
 <% blogs.forEach((ele)=>{ %>
-    <div class="card  m-3 p-4 col-md-4 ">
+    <div class="card  m-3 p-4 col-md-3 ">
         <div class="card-header text-center blog_title  font-weight-bold"><%= ele.title %></div>
         <div class="card-body p-0">
             <input type="text" class="blog_id" hidden value="<%= ele._id %>">
@@ -50,8 +50,7 @@
 
       </div>
 <% }) %>
-    </div>
-</div>
+</div></div>
 <script src="/scripts/main.js"></script>
 </div>
 

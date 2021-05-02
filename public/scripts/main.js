@@ -12,11 +12,13 @@ if(pageTitle == "Home")
 const filterBtn=document.querySelector("#filter_btn")
 const filterBox=document.querySelector("#filter_box")
 const hideFilter=document.querySelector("#hide_filter")
+let  blogsRow=document.querySelector("#blogs_row")
 
 const filterData=document.querySelector("#filter_data")
 
 hideFilter.addEventListener("click",()=>{
   $("#filter_box").fadeIn(300)
+  blogsRow.classList.remove("blur")
 
   filterBox.classList.add("hide_box")
 
@@ -25,6 +27,7 @@ hideFilter.addEventListener("click",()=>{
 
 filterBtn.addEventListener("click",(event)=>{
 //call api
+
 let filter=`<div class='filter_wrapper p-2 justify-content-center'><label class=" text-center w-100  mb-1 font-weight-bold text-white">Categories:</label>`
 //get all blog category
 fetch(`/blog/filter`,{method:"GET",headers:{"Content-Type":"application/json"}})
@@ -35,6 +38,7 @@ fetch(`/blog/filter`,{method:"GET",headers:{"Content-Type":"application/json"}})
   })
 filter+=`</div>`
   filterBox.classList.remove("hide_box")
+blogsRow.classList.add("blur")
   filterData.innerHTML=filter
 
 })
@@ -73,13 +77,14 @@ let renderResult=(value)=>{
  blogsRow.innerHTML='<strong class="p-2 text-primary">Loading ...</strong>'
 
  setTimeout(()=>{
-  
+  blogsRow.classList.remove("blur")
+
   blogs.then(d=>d.json()).then(data=>{
     console.log(data)
       data["blogs"].forEach(element => {
     
      blog+=`
-       <div class="card  m-3 p-4  col-md-4">
+       <div class="card  m-3 p-4  col-md-3">
   <div class="card-header text-center blog_title  font-weight-bold">${element.title}</div>
   <div class="card-body p-0">
       <input type="text" class="blog_id" hidden value="${element._id}">
