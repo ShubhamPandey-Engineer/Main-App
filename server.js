@@ -16,17 +16,27 @@ const { schema } = require("./models/blogmodel");
 //app.use(restify.plugins.bodyParser());
 
 const url="mongodb+srv://root:root@cluster0.qcptk.mongodb.net/Demo?retryWrites=true&w=majority"
+
 let connect=mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true})
+.then(res=>{
+    console.log("okay")
+})
+.catch(err=>{
+    ("could not connect to the database")
+
+})
 
 
 //Filter blogs-show checkboxes
 app.get("/blog/filter",async (req,res)=>{
     let filterType=req.params.type
+try{
   let blogs  =await model.distinct("category")
-       // console.log(blogs)
-       console.log(blogs)
-        res.send(JSON.stringify({blogs}))
-
+  res.send(JSON.stringify({blogs}))
+}
+catch(err){
+    console.log("filter not working")
+}
 })
 
 
@@ -37,8 +47,13 @@ app.get("/blog/sort/:type",async (req,res)=>{
     obj=JSON.parse(sortType)
     if(obj["data"].length == 0)
     {
+        try{
         let blogs=await model.find()
         res.send(JSON.stringify({blogs}))
+        }
+        catch(err){
+        console.log("sort not workink")
+        }
 
     }
     else{
@@ -49,6 +64,7 @@ app.get("/blog/sort/:type",async (req,res)=>{
 
 //Get All blogs
 app.get("/", async (req,res)=>{
+    try{
   await  model.find({},(err,blogs)=>{
         if(err)
         {
@@ -58,6 +74,11 @@ app.get("/", async (req,res)=>{
             res.render("blogs",{blogs:blogs})
         }
     }).limit(-6).sort({"createdAt":-1})
+}
+catch(err){
+    res.render("404")
+}
+
 })
 
 
@@ -65,11 +86,17 @@ app.get("/", async (req,res)=>{
 
 app.post("/blog/like/:blogid",async(req,res)=>
 {   
-  let blog=  await model.findOne({_id:req.params.blogid})
+    try{
+  await model.findOne({_id:req.params.blogid},(err,blog)=>{
   blog.likes++;
   blog.save();
   res.send(blog.likes.toString())
-  
+  })
+}
+catch(err){
+    console.log(err)
+}
+
 })
 
 
@@ -77,7 +104,7 @@ app.post("/blog/like/:blogid",async(req,res)=>
 
 
 
-//get new post 
+//create new post 
 app.get("/blog/create", async (req,res)=>{
  await   res.render("create");
 })
@@ -99,7 +126,7 @@ app.post("/blog/create", [
         res.render("create",{errors:errorArr.errors,userInput:req.body})
     }
     else{
-    
+    try{
 await model.create({
     title:req.body.blog_title,
     category:req.body.blog_category,
@@ -115,7 +142,11 @@ await model.create({
         console.log(current)
     }
     })
-    
+}
+catch(err){
+console.log("could not create the new post")
+}
+
 await res.redirect("/");
     }
 })
@@ -126,9 +157,14 @@ await res.redirect("/");
 app.get("/blog/:id",async (req,res)=>{
 const blogId=req.params.id;
 //get the specfic blog 
+try{
 var myblog=await model.findById(blogId,(err,blog)=>{
     res.render("Detail",{blog:blog})
 })
+}
+catch(err){
+    console.log("could not get detail route")
+}
 
 })
 
@@ -136,16 +172,25 @@ var myblog=await model.findById(blogId,(err,blog)=>{
 //Edit blog-Get
 
 app.get("/blog/:id/edit",async (req,res)=>{
+    try{
    await model.findById(req.params.id,(err,myblog)=>{
         if(!err)
         {
             res.render("edit",{blog:myblog})
         }
     })
+}
+catch(err){
+    console.log('cannot find the post for edit')
+}
 })
+
+
+
 
 //Edit  blog-Post
 app.post("/blog/:id",async (req,res)=>{
+    try{
     let blogUpdate={
         title:req.body.blog_title,
         category:req.body.blog_category,
@@ -154,18 +199,23 @@ app.post("/blog/:id",async (req,res)=>{
   await  model.findByIdAndUpdate(req.params.id,blogUpdate,(err,updatedBlog)=>{
    if(!err)
    {
-       res.redirect("/blog/Allblogs");
+       res.redirect("/");
    }
    else{
         res.redirect("blog/:req.params.id/edit")
    }
     })
+}
+catch(err){
+    console.log('cannot update the post')
+}
 })
 
 
 
 //Delete  route
 app.post("/blog/delete/:id",async (req,res)=>{
+    try{
    await model.findByIdAndDelete(req.params.id,(err)=>{
         if(!err)
         {
@@ -176,7 +226,14 @@ app.post("/blog/delete/:id",async (req,res)=>{
       res.send("Cannot delete the respective post")
         }
     })
+}
+catch(err){
+    console.log('cannot delete the post')
+}
+
 })
+
+
 const hostname='0.0.0.0'
 app.listen(process.env.PORT || 3000,hostname,(err)=>{
     if(!err)
