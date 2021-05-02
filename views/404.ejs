@@ -1,12 +1,18 @@
-<div class="error">
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <strong>Oops faced some problem</strong> 
+<%- include("partials/header")  %>
+<style>
+  .navbar{
+    display: none;
+  }
+</style>
+<div id="error_page">
+<div class="error_wrapper">
+  <label>Error: 404</label>
+  <div class="error_box">
+    <div class="error_cont">
+      <label>Oops, something went wrong.</label>
+      <h3 class="icon"><i class="fa fa-frown-o" aria-hidden="true"></i>
+      </h3>
     </div>
-    
-    <script>
-      $(".alert").alert();
-    </script>"
+  </div>
+</div>
 </div>

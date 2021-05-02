@@ -15,15 +15,25 @@ var mongoose=require("mongoose");
 const { schema } = require("./models/blogmodel");
 //app.use(restify.plugins.bodyParser());
 
+
+
+
+
+//Error occured
+function errorPage(req,res,next){
+    res.render("404")
+
+}
+
+
 const url="mongodb+srv://root:root@cluster0.qcptk.mongodb.net/Demo?retryWrites=true&w=majority"
 
 let connect=mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(res=>{
-    console.log("okay")
+    console.log("connected to mongoDB")
 })
 .catch(err=>{
-    ("could not connect to the database")
-
+errorPage()
 })
 
 
@@ -106,7 +116,9 @@ catch(err){
 
 //create new post 
 app.get("/blog/create", async (req,res)=>{
- await   res.render("create");
+
+ await   res.render("create")
+
 })
 
 // post new post
@@ -130,9 +142,7 @@ app.post("/blog/create", [
 await model.create({
     title:req.body.blog_title,
     category:req.body.blog_category,
-    content:req.body.blog_content,
-    likes:0
-    
+    content:req.body.blog_content
 },(err,current)=>{
     if(err)
     {
@@ -159,6 +169,7 @@ const blogId=req.params.id;
 //get the specfic blog 
 try{
 var myblog=await model.findById(blogId,(err,blog)=>{
+    console.log(blog)
     res.render("Detail",{blog:blog})
 })
 }

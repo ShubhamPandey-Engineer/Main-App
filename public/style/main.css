@@ -176,3 +176,59 @@ box-shadow:  0 0 0 8px silver;
     background-color: var(--secondColor);
     border-radius: 6px;
 }
+
+
+
+/*error page */
+#error_page{
+    height:70vh;
+}
+.error_wrapper{
+    position: relative;
+    top:40%;
+    width: 70%;
+    text-align: center;
+
+    margin: auto;
+    height: 100%;
+}
+.error_wrapper label{
+    
+    font-size: 2rem;
+    font-weight:bolder;
+}
+
+.error_cont{
+font-weight: bolder;
+font-size: 1.6rem;
+    color: #FFF;
+}
+
+.icon{
+    font-size: 120px;
+}
+.icon i{
+}
+.error_box{
+    padding: 1rem;
+    border-radius: 15px;
+    background-color:var(--mainColor);
+    text-align: center;
+    animation: move_error 4s infinite  ease-in-out;
+    transition: all .6s ease-in-out;
+    box-shadow: 0 0 25px silver;
+}
+@keyframes move_error {
+to{
+   transform: scale(1);
+   transition: all .6s ease-in-out;
+
+    }
+
+    from{
+        transition: all .6s ease-in-out;
+
+    transform: scale(0);
+    }
+    
+}
