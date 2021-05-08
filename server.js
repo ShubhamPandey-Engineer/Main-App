@@ -1,8 +1,6 @@
 var express=require("express"),
 app=express(),
 {check,validationResult} =require("express-validator"),
-flash=require("connect-flash"),
-session=require("express-session"),
 jwt=require("jsonwebtoken"),
 cookieParser=require("cookie-parser"),
 bcrypt=require("bcrypt");
@@ -36,14 +34,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(express.json())
 app.use(cookieParser())
-app.use(flash())
 app.use(express.static('public'));
 const { schema, create } = require("./models/blogmodel");
-app.use(session({
-    secret: 'djhxcvxfgshajfgjhgsjhfgsakjeauytsdfy',
-    resave: false,
-    saveUninitialized: true
-    }));
+
     
 
 const router=require("./blogs/Routes")

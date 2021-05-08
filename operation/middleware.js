@@ -1,7 +1,6 @@
 
 //check if user authorize
 cookieParser=require("cookie-parser"),
-session=require("express-session"),
 jwt=require("jsonwebtoken"),
 cookieParser=require("cookie-parser"),
 bcrypt=require("bcrypt");
