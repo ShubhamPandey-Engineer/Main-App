@@ -1,5 +1,5 @@
 {
-  "name": "myblog-mongo",
+  "name": "blog-mongo",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -25,6 +25,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+
+  "engines": {
+    "nonde":"14.x"
+  },
+    
   "author": "",
   "license": "ISC"
 }
+
