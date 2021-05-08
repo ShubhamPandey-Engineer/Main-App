@@ -1,7 +1,6 @@
 {
   "name": "blog-mongo",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "dependencies": {
     "async": "^3.2.0",
@@ -25,12 +24,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-
   "engines": {
-    "nonde":"14.x"
+    "nonde": "14.x"
   },
-    
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/myblog-mongo.git"
+  },
+  "description": ""
 }
-
