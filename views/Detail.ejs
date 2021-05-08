@@ -1,5 +1,10 @@
-<%- include('partials/header') %>
 <title>Detail</title>
+<% if(typeof data == "undefined")  {%>
+  <%-  include("partials/header") %> 
+  <% }   else { %>
+     <%-  include("partials/header-login") %>
+    <% } %>
+
 <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
@@ -46,14 +51,17 @@
 
         <div class="d-flex justify-content-between">
         <label class="card-title blog_date blog_detail_date m-0  "><%= blog.createdAt.toString().substring(0,15) %></label>
-
+        <% if (typeof data != "undefined") {%> 
+        <% if(data._id.toString() === blog.createdBy.toString()) { %>
         <div class="d-flex justify-content-center  p-2">
 
     <button  class="btn btn-md btn-outline-danger m-2" id="delete_post" data-toggle="modal" data-target="#myModal">  <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
-        <a class="btn btn-md btn-outline-info m-2" data-toogle="tooltip" title="Edit this blog" href="/blog/<%= blog._id %>/edit" role="link"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <a class="btn btn-md btn-outline-info m-2" data-toogle="tooltip" title="Edit this blog" href="/blogs/edit/<%= blog._id %>" role="link"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </a>
-        </div></div>
+        </div> <% } }%>
+      </div>
 </div></div>
 <script defer src="/scripts/main.js"></script>
+<script defer src="/scripts/blogdetail.js"></script>
  <%- include('partials/footer') %>

@@ -14,10 +14,22 @@ const blogSchema=new mongoose.Schema({
     likes:{
         type:Number,
         default:0
+        
     },
+    likedBy:{
+        id:{
+        type:String,
+        required:false
+    }
+}
+    ,
     createdAt:{
         type:Date,
         default:Date.now
+    },
+    createdBy:{
+        type:String,
+        required:true
     }
 })
 

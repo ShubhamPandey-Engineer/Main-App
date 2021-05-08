@@ -1,247 +1,184 @@
 var express=require("express"),
-{check,validationResult} =require("express-validator")
-const app=express();
+app=express(),
+{check,validationResult} =require("express-validator"),
+flash=require("connect-flash"),
+session=require("express-session"),
+jwt=require("jsonwebtoken"),
+cookieParser=require("cookie-parser"),
+bcrypt=require("bcrypt");
 
+
+//importing middlewares
+const{isAuthenticated,userData}=require("./operation/middleware")
+console.log(isAuthenticated)
+
+
+
+//import jwt token
+const createToken=require("./operation/middleware/jwttoken")
+
+require('dotenv').config();
 //importing object schema and model
-const model=require("./models/blogmodel")
+const model=require("./models/blogmodel"),
+userModel=require("./models/usermodel"),
 restify=require("restify")
 app.set("view engine","ejs");
 var bodyParser=require("body-parser");
+/*
+app.use(session({
+    secret: 'djhxcvxfgshajfgjhgsjhfgsakjeauytsdfy',
+    resave: false,
+    saveUninitialized: true
+    }));
+    */
 const { all } = require("async");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
+app.use(express.json())
+app.use(cookieParser())
+app.use(flash())
 app.use(express.static('public'));
-var mongoose=require("mongoose");
-const { schema } = require("./models/blogmodel");
-//app.use(restify.plugins.bodyParser());
-
-
-
-
-
-//Error occured
-function errorPage(req,res,next){
-    res.render("404")
-
-}
-
-
-const url="mongodb+srv://root:root@cluster0.qcptk.mongodb.net/Demo?retryWrites=true&w=majority"
-
-let connect=mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true})
-.then(res=>{
-    console.log("connected to mongoDB")
-})
-.catch(err=>{
-errorPage()
-})
-
-
-//Filter blogs-show checkboxes
-app.get("/blog/filter",async (req,res)=>{
-    let filterType=req.params.type
-try{
-  let blogs  =await model.distinct("category")
-  res.send(JSON.stringify({blogs}))
-}
-catch(err){
-    console.log("filter not working")
-}
-})
-
-
-//Sort blog
-
-app.get("/blog/sort/:type",async (req,res)=>{
-    let sortType=req.params.type
-    obj=JSON.parse(sortType)
-    if(obj["data"].length == 0)
-    {
-        try{
-        let blogs=await model.find()
-        res.send(JSON.stringify({blogs}))
-        }
-        catch(err){
-        console.log("sort not workink")
-        }
-
-    }
-    else{
-    let blogs=await model.find({category:obj["data"]})
-    res.send(JSON.stringify({blogs}))
-    }
-})
-
-//Get All blogs
-app.get("/", async (req,res)=>{
-    try{
-  await  model.find({},(err,blogs)=>{
-        if(err)
-        {
-            console.log(err)
-        }
-        else{
-            res.render("blogs",{blogs:blogs})
-        }
-    }).limit(-6).sort({"createdAt":-1})
-}
-catch(err){
-    res.render("404")
-}
-
-})
-
-
-//Like a Blog
-
-app.post("/blog/like/:blogid",async(req,res)=>
-{   
-    try{
-  await model.findOne({_id:req.params.blogid},(err,blog)=>{
-  blog.likes++;
-  blog.save();
-  res.send(blog.likes.toString())
-  })
-}
-catch(err){
-    console.log(err)
-}
-
-})
-
-
-
-
-
-
-//create new post 
-app.get("/blog/create", async (req,res)=>{
-
- await   res.render("create")
-
-})
-
-// post new post
-app.post("/blog/create", [
-    check("blog_title").notEmpty().withMessage("Enter Blog Title"),
-    check("blog_category").notEmpty().withMessage("Enter Blog Category"),
-    check("blog_content").notEmpty().withMessage("Enter Blog Content"),
+const { schema, create } = require("./models/blogmodel");
+app.use(session({
+    secret: 'djhxcvxfgshajfgjhgsjhfgsakjeauytsdfy',
+    resave: false,
+    saveUninitialized: true
+    }));
     
-] , async (req,res)=>{
 
-   const title= req.body.blog_title
-   const category= req.body.blog_category
-   const content= req.body.blog_content
-    let errorArr=validationResult(req)
-    if(!errorArr.isEmpty())
-    {
-        res.render("create",{errors:errorArr.errors,userInput:req.body})
+const router=require("./blogs/Routes")
+
+
+
+//home route---------------
+app.use("/",router)
+
+
+//router for  blogs route-----------------------
+app.use("/blogs" ,router)
+
+
+//Post request handler -----------------------------
+
+//POST -Signup
+app.post('/blog/signup'
+,
+//validate signup form
+[
+check("userName").notEmpty().withMessage("Username cannot be empty"),
+check("userEmail").isEmail().withMessage("Please enter valid email"),
+check("userPassword").notEmpty().withMessage("Userpassword cannot be empty").isLength({min:6}).withMessage("Password is too small")
+]
+, async (req, res) => {
+
+console.log(req.body)
+    //signup form errors
+    const errors=validationResult(req)
+console.log(errors)
+let response={}
+let status=false
+response.errors=errors
+response.status=status
+    const userExists=await userModel.findOne({userEmail:req.body.userEmail})
+    if(userExists) errors["errors"].push({msg:"User already exists!!!"})
+
+    if(!errors.isEmpty()) return res.send(JSON.stringify({"errors":errors["errors"]}))
+   
+   
+    
+
+    //valid form data
+    //form data
+    const{userName,userEmail,userPassword}=req.body
+    const hashPassword=await bcrypt.hash(userPassword,10).then(hash=>{
+
+    //enter user to DB
+   userModel.create({
+    userName:userName,
+    userEmail:userEmail,
+    userPassword:hash
+     },(err,newUser)=>{
+
+    if(!err){
+        console.log("user inserted")
+        status=true
+        res.send(JSON.stringify({"success":newUser}))
     }
-    else{
-    try{
-await model.create({
-    title:req.body.blog_title,
-    category:req.body.blog_category,
-    content:req.body.blog_content
-},(err,current)=>{
-    if(err)
-    {
-        console.log(err)
+    else{  
+        res.send(JSON.stringify({"errors":"Try again"}))
+
     }
-    else{
-        console.log(current)
-    }
+})
     })
-}
-catch(err){
-console.log("could not create the new post")
-}
+    .catch(err=>{
+        console.log('hash not created')
+    })
 
-await res.redirect("/");
+})
+
+
+
+
+
+//user Signin POT request
+app.post('/blog/signin',[check("email").notEmpty().withMessage("Useremail cannot be empty").isEmail().withMessage("Please enter valid email"),
+
+check("password").notEmpty().withMessage("User Password cannot be empty")],
+//validate signin form
+ async (req, res) => {
+    let status=false
+    //sigin form errors
+    let response={
     }
-})
+    response.status=status
+  let errors =validationResult(req)
+  response.errors=errors
 
+ 
+//empty input fields
+    if(!errors.isEmpty()) return res.send(JSON.stringify({"errors":response["errors"]["errors"]}))
 
-
-//Blog detail
-app.get("/blog/:id",async (req,res)=>{
-const blogId=req.params.id;
-//get the specfic blog 
-try{
-var myblog=await model.findById(blogId,(err,blog)=>{
-    console.log(blog)
-    res.render("Detail",{blog:blog})
-})
-}
-catch(err){
-    console.log("could not get detail route")
-}
-
-})
-
-
-//Edit blog-Get
-
-app.get("/blog/:id/edit",async (req,res)=>{
-    try{
-   await model.findById(req.params.id,(err,myblog)=>{
-        if(!err)
-        {
-            res.render("edit",{blog:myblog})
-        }
-    })
-}
-catch(err){
-    console.log('cannot find the post for edit')
-}
-})
-
-
-
-
-//Edit  blog-Post
-app.post("/blog/:id",async (req,res)=>{
-    try{
-    let blogUpdate={
-        title:req.body.blog_title,
-        category:req.body.blog_category,
-        content:req.body.blog_content
+    //check user exitence in DB
+    let user=await userModel.findOne({userEmail:req.body.email},{userPassword:-1})
+    let error=[]
+    if(!user){
+        errors["errors"].push({msg:"Invalid email or password"})
+        return res.send(JSON.stringify({"errors":response["errors"]["errors"]}))
     }
-  await  model.findByIdAndUpdate(req.params.id,blogUpdate,(err,updatedBlog)=>{
-   if(!err)
-   {
-       res.redirect("/");
-   }
-   else{
-        res.redirect("blog/:req.params.id/edit")
-   }
+
+    //check password
+    let unhash=await bcrypt.compare(req.body.password,user.userPassword)
+    if(!unhash) {
+        errors["errors"].push({msg:"Invalid email or password"})
+    //  return   res.json(response)
+    return res.send(JSON.stringify({"errors":response["errors"]["errors"]}))
+
+    }
+
+    //user Authenticated
+    //create and assign jwt token
+    const token=jwt.sign({id:user._id},process.env.secret,{expiresIn:process.env.token_expires})
+    const cook={
+
+        "token":token,secure:false,httpOnly:true,status:status
+               }
+        
+      if(token) 
+      {   response.status=true
+        //  response.cookie=cook
+
+          res.send(JSON.stringify({"token":cook["token"]}))
+
+      }
+        console.log(token)
+    
+
+
     })
-}
-catch(err){
-    console.log('cannot update the post')
-}
-})
 
-
-
-//Delete  route
-app.post("/blog/delete/:id",async (req,res)=>{
-    try{
-   await model.findByIdAndDelete(req.params.id,(err)=>{
-        if(!err)
-        {
-         //  res.redirect("/blog/Allblogs")
-         res.send("Post Delete !!!")
-        }
-        else{
-      res.send("Cannot delete the respective post")
-        }
-    })
-}
-catch(err){
-    console.log('cannot delete the post')
-}
-
+        
+app.get("*",(req,res)=>{
+    res.render("404")
 })
 
 

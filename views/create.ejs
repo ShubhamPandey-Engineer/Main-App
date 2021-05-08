@@ -1,25 +1,48 @@
-<%- include ('partials/header')  %>
-<title>Create</title>
-<div class="container-fluid">
-<div class="alert alert-primary alert-dismissible  " style='display :none;z-index:11;width: 90%;position: absolute;' id="blog_success" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        <span class="sr-only">Close</span>
-    </button>
-    <strong>Blog created ...</strong>
-</div>
+<% if(typeof data == "undefined")  {%>
+    <%-  include("partials/header") %> 
+    <% }   else { %>
+       <%-  include("partials/header-login") %>
+      <% } %>
+      
+        <title>Create</title>
+<div class="container-fluid" style="margin-top: 4rem;">
+   
+
+    <div class="modal fade " id="myModal">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+    
+            <div class="modal-body alert-danger p-1 ">
+             <h6 class="alert-danger text-center  mb-3">Please fill the following details:</h6>
+                <div class = "d-block " id="error_box"></div>
+          
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer alert-danger">
+              <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Back 
+                  <i class="fa fa-backward" aria-hidden="true"></i> </button>
+            </button>
+            </div>
+            
+          </div></div></div>
+
+
 <div class="jumbotron page_jumbo p-4">
-    <div class="container">
-        <h4 class="display text-center  blog_header font-weight-bold" style="margin-top: 80px;">Create Blog</h4>
+    <div class="container text-center ">
+    
+        <h4 class="display text-center  blog_header font-weight-bold" >Create Blog</h4>
         <hr class="my-2">
        
+      
+ 
+   
     </div>
 </div>
-
 <% if(typeof errors != 'undefined') { %>
-    <%- include("partials/Validation-Errors") %>
-     <%  }%>
-<form method="POST" action="/blog/create" name="myblog" id="blog_c_form" class="p-4 ">
+    <%- include("partials/showerrors") %>
+     <%  }  %>
+<form method="POST" action="/blogs/create" name="myblog" id="blog_c_form" class="p-4 ">
  
 <div class = "form-group row justify-content-center mb-4    ">
     <label class="col-md-2 font-weight-bold blog_field_label text-md-center" for = "blog_title">Title</label>
@@ -57,6 +80,7 @@
 </div>
 <script>
 </script>
-<script src="/scripts/main.js"></script>
+<script defer src="/scripts/main.js"></script>
+<script  defer src="/scripts/createblog.js"></script>
 <%- include ('partials/footer') %>
 

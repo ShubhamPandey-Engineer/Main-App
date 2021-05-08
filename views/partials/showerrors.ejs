@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
 
-        <div class="modal-body alert-danger  ">
+        <div class="modal-body alert-danger p-1 ">
          <h6 class="alert-danger text-center  mb-3">Please fill the following details:</h6>
           <% errors.forEach((err)=>{ counter++; %>
             <div class = "d-block"><span class="badge badge-light m-2"><%= counter %></span><label style="font-size:.8rem;" class=" font-weight-bolder text-danger"><%=  err.msg   %></label></div>

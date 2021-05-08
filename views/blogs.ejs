@@ -1,19 +1,26 @@
-<%- include('partials/header') %>
+<% if(typeof data == "undefined")  {%>
+      <%-  include("partials/header") %> 
+      <% }   else { %>
+         <%-  include("partials/header-login") %>
+        <% } %>
+
+          
+
+
 <title>Home</title>
+
+
 <div  class="container-fluid">
     <div class="jumbotron page_jumbo p-4 " style="margin-top: 60px;">
         <div class="container">
             <h4 class="display text-center  blog_header font-weight-bold">All Blogs</h4>
             <hr class="my-2">
             <p class="lead text-center pt-3">
-                <a class="btn btn-md text-white font-weight-bold btn_hover" style="background-color: var(--mainColor);" href="/blog/create" role="link">Create new blog</a>
+                <a class="btn btn-md text-white font-weight-bold btn_hover" style="background-color: var(--mainColor);" href="/blogs/create" role="link">Create new blog</a>
             </p>
         </div>
     </div>
-    <div id="blog_status" class="container" style="position: relative;">
-
-    </div>
-
+      
     <div class="w-100  text-center ">
        <button class="btn  btn-md text-white text-weight-bold btn_hover" style="background-color: var(--mainColor);" id="filter_btn">Filter</button>
      <!-- <select class="form-select-lg form-select m-auto col-md-2 col-xs-6 col-sm-6 form-control" id="blog_sort" onchange="getSortValue(this.value)">
@@ -21,6 +28,8 @@
             <option value="-1">Latest</option>
             <option value="1">Oldest</option>
           </select>-->
+    
+      
           <div class="container-fluid justify-content-center row pl-5 ml-md-3">
           <div id="filter_box" class="hide_box m-2  col-auto   " >
              <div class="form-check " id="filter_data">
@@ -38,12 +47,12 @@
         <div class="card-body p-0">
             <input type="text" class="blog_id" hidden value="<%= ele._id %>">
           <label class="card-title d-block text-center m-1 blog_category "><%= ele.category %></label>
-        <div class="d-flex justify-content-center">  <label  class="blog_likes card-title d-block text-center m-1"><%= ele.likes%>  </label><i class="fa fa-thumbs-up text-primary m-2" aria-hidden="true"></i></div>
+        <div class="d-flex justify-content-center">  <label  class="blog_likes card-title d-block text-center m-1"><%= ele.likes%>  </label><i  class="fa fa-thumbs-up likes_icon  m-2" aria-hidden="true"></i></div>
         </div>
         <div class="d-flex justify-content-center  p-2" >
-        <a  data-toogle="tooltip" title="View this blog" href="/blog/<%= ele._id %>"><button  style="width: 38px;height: 38px;" class="btn btn-md btn-dark m-2"><i class="fa fa-external-link" aria-hidden="true"></i>
+        <a  data-toogle="tooltip" title="View this blog" href="/blogs/detail/<%= ele._id %>"><button   class="btn btn-md  blog_visit m-2"><i class="fa fa-external-link" aria-hidden="true"></i>
         </button></a>
-        <button type="button" data-toogle="tooltip"  title="Like this blog!!!"  style="color:#FFF;width: 38px;height: 38px;" class=" btn-primary blog_like btn  btn-md m-2" data-blogid="<%= ele._id %>"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+        <button type="button" data-toogle="tooltip"   title="Like this blog!!!"  style="color:#FFF;width: 38px;height: 38px;" class=" blog_like btn  btn-md m-2" data-blogid="<%= ele._id %>"><i class="border-primary fa fa-thumbs-up blog_like_icon not_liked"  onclick="likeOrDislike(this)" aria-hidden="true"></i>
         </button>
         </div>
         <label class="card-title blog_date  d-block"><%= ele.createdAt.toString().substring(0,15) %></label>
@@ -51,7 +60,14 @@
       </div>
 <% }) %>
 </div></div>
-<script src="/scripts/main.js"></script>
+<script defer src="/scripts/likedislike.js"></script>
+<script defer  src="/scripts/homefilter.js"></script>
+<script defer src="/scripts/blogliked.js"></script>
+<script defer  src="/scripts/main.js"></script>
+<script defer  src="/scripts/checkcookie.js"></script>
+
+
+
 </div>
 
 <%- include('partials/footer') %>

@@ -1,5 +1,10 @@
-<%- include ('partials/header')  %>
 <title>Edit</title>
+<% if(typeof data == "undefined")  {%>
+    <%-  include("partials/header") %> 
+    <% }   else { %>
+       <%-  include("partials/header-login") %>
+      <% } %>
+
 <link rel="stylesheet/css" href="/style/main.css">
 <div class="container-fluid mt-5">
     <div class="jumbotron page_jumbo p-4 " style="margin-top: 60px;">
@@ -9,7 +14,7 @@
 
         </div>
     </div>
-<form method="POST" action="/blog/<%= blog._id %>" name="myblog" class="p-4">
+<form method="POST" action="/blogs/edit/<%= blog._id %>" name="myblog" class="p-4">
  
 <div class = "form-group row justify-content-center ">
     <label class="col-md-1 font-weight-bold  blog_field_label "  for = "blog_title">Title</label>
