@@ -25,7 +25,7 @@
     "start": "node server.js"
   },
   "engines": {
-    "nonde": "14.x"
+    "node": "14.x"
   },
   "author": "",
   "license": "ISC",
