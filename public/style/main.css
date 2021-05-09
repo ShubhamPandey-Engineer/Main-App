@@ -103,7 +103,7 @@ filter: blur(14px);
     transition: box-shadow .8s ease-in-out;
 
 }
-.card:hover{
+#blogs_row .card:hover{
     box-shadow: 0 0 20px silver;
     transform:scale(1);
     transition: all .4s ease-in-out;
