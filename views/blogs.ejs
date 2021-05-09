@@ -35,12 +35,13 @@
              <div class="form-check p-1 " id="filter_data">
               </div>
               <div class="row justify-content-center">
-              <div class='form-group m-auto'><button  id="show_result" class="btn btn-md btn-light">Go !!!</button></div>
+              <div class='form-group m-auto'><button  id="show_result" class="btn btn-md btn-light">Result</button></div>
               <div class='form-group m-auto'><button  id="hide_filter" class="btn btn-md  btn-light">Back</button></div>
               </div>
           </div></div>
 </div>
-<div class="row justify-content-around" id="blogs_row">
+<div class="container-fluid">
+<div class=" justify-content-between row "  id="blogs_row">
 <% blogs.forEach((ele)=>{ %>
     <div class="card  m-3 p-4 col-md-3 ">
         <div class="card-header text-center blog_title  font-weight-bold"><%= ele.title %></div>
@@ -52,13 +53,16 @@
         <div class="d-flex justify-content-center  p-2" >
         <a  data-toogle="tooltip" title="View this blog" href="/blogs/detail/<%= ele._id %>"><button   class="btn btn-md  blog_visit m-2"><i class="fa fa-external-link" aria-hidden="true"></i>
         </button></a>
-        <button type="button" data-toogle="tooltip"   title="Like this blog!!!"  style="color:#FFF;width: 38px;height: 38px;" class=" blog_like btn  btn-md m-2" data-blogid="<%= ele._id %>"><i class="border-primary fa fa-thumbs-up blog_like_icon not_liked"  onclick="likeOrDislike(this)" aria-hidden="true"></i>
+        <button type="button" data-toogle="tooltip"   title="Like this blog!!!"  style="color:#FFF;width: 38px;height: 38px;" class=" blog_like btn  btn-md m-2" data-blogid="<%= ele._id %>">
+            <i class="border-primary fa fa-thumbs-up blog_like_icon not_liked "  onclick="likeOrDislike(this)" aria-hidden="true"></i>
         </button>
         </div>
         <label class="card-title blog_date  d-block"><%= ele.createdAt.toString().substring(0,15) %></label>
 
       </div>
 <% }) %>
+    </div>
+
 </div></div>
 <script defer src="/scripts/likedislike.js"></script>
 <script defer  src="/scripts/homefilter.js"></script>

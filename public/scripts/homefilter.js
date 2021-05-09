@@ -23,7 +23,7 @@ hideFilter.addEventListener("click",()=>{
 filterBtn.addEventListener("click",(event)=>{
 //call api
 
-let filter=`<div class='filter_wrapper p-2 justify-content-center'><label class=" text-center w-100  mb-1 font-weight-bold text-white">Categories:</label>`
+let filter=`<div class='filter_wrapper p-2 justify-content-center'><label class=" text-center w-100 filter_category  mb-1 font-weight-bold text-white">Categories:</label>`
 //get all blog category
 fetch(`/blogs/filter`,{method:"GET",headers:{"Content-Type":"application/json"}})
 .then(json=>json.json())
@@ -72,7 +72,8 @@ renderResult(JSON.stringify(obj))
 let renderResult=(value)=>{
   let  blogsRow=document.querySelector("#blogs_row")
   let blogs=fetch(`/blogs/sort/${value}`,{method:"GET",headers:{"Content-Type":"application/json"}})
-  let blog =`<div class="w-100  justify-content-center row  m-1" id="blogs_row"> `
+  let blog =`<div class="container-fluid">
+  <div class=" justify-content-between row" id="blogs_row"> `
 
  blogsRow.innerHTML='<strong class="p-2 text-primary">Loading ...</strong>'
 
@@ -89,12 +90,13 @@ let renderResult=(value)=>{
   <div class="card-body p-0">
       <input type="text" class="blog_id" hidden value="${element._id}">
     <label class="card-title d-block text-center m-1 blog_category ">${element.category}</label>
-  <div class="d-flex justify-content-center">  <label  class="blog_likes card-title d-block text-center m-1">${element.likes}  </label><i class="fa fa-thumbs-up text-primary m-2" aria-hidden="true"></i></div>
+  <div class="d-flex justify-content-center">  <label  class="blog_likes card-title d-block text-center m-1">${element.likes}  </label><i class="fa fa-thumbs-up text-primary m-2 likes_icon" aria-hidden="true"></i></div>
   </div>
   <div class="d-flex justify-content-center  p-2" >
-  <a  data-toogle="tooltip" title="View this blog" href="/blog/${element._id}"><button  style="width: 38px;height: 38px;" class="btn btn-md btn-dark m-2"><i class="fa fa-external-link" aria-hidden="true"></i>
+  <a  data-toogle="tooltip" title="View this blog" href="/blogs/detail/${element._id}"><button  style="width: 38px;height: 38px;" class="btn btn-md  blog_visit m-2"><i class="fa fa-external-link" aria-hidden="true"></i>
   </button></a>
-  <button type="button" data-toogle="tooltip"  title="Like this blog!!!"  style="color:#FFF;width: 38px;height: 38px;" class=" btn-primary blog_like btn  btn-md m-2" data-blogid="${element._id}"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+  <button type="button" data-toogle="tooltip"   title="Like this blog!!!"  style="color:#FFF;width: 38px;height: 38px;" class=" blog_like btn  btn-md m-2" data-blogid="<%= ele._id %>">
+  <i class="border-primary fa fa-thumbs-up blog_like_icon not_liked " onclick='likeOrDislike(this)' aria-hidden="true"></i>
   </button>
   </div>
   <label class="card-title blog_date  d-block">${element.createdAt.toString().substring(0,15)}</label>
@@ -104,7 +106,7 @@ let renderResult=(value)=>{
 
     })
 
-    blog+=`</div>`
+    blog+=`</div></div>`
 
 
 
