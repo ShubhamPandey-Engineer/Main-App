@@ -10,7 +10,9 @@ function checkCookiees()
   </button>
   <strong>Please SignIn to continue <a href="blogs/auth"><button class="btn btn-md btn-light " type="button">SignIn here</button></a> </strong> 
 </div>`
-//status.classList.toggle("hide_box")
+<<<<<<< HEAD
+=======
+>>>>>>> 3785a995d58e341ec22f7ffac44cccf520957edb
       return false
       //  document.location.href="/blogs/user/auth"
     }
