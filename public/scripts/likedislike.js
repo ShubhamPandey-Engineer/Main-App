@@ -12,9 +12,8 @@ function checkCookiees()
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
-  <strong>Please SignIn to continue <a href="blogs/user/auth"><button class="btn btn-md btn-light " type="button">SignIn here</button></a> </strong> 
+  <strong>Please SignIn to continue <a href="blogs/auth"><button class="btn btn-md btn-light " type="button">SignIn here</button></a> </strong> 
 </div>`
-status.classList.toggle("hide_box")
       return false
       //  document.location.href="/blogs/user/auth"
     }
