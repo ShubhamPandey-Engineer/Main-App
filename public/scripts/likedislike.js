@@ -14,7 +14,6 @@ function checkCookiees()
   </button>
   <strong>Please SignIn to continue <a href="blogs/user/auth"><button class="btn btn-md btn-light " type="button">SignIn here</button></a> </strong> 
 </div>`
-status.classList.toggle("hide_box")
       return false
       //  document.location.href="/blogs/user/auth"
     }
@@ -27,7 +26,7 @@ status.classList.toggle("hide_box")
 
 //user like/dislike action
 let likeOrDislike=(event)=>{
-
+console.log("click")
     //if user authenticate
     if(checkCookiees())
     {
