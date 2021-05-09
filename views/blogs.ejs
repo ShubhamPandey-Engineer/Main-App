@@ -32,7 +32,7 @@
       
           <div class="container-fluid justify-content-center row pl-5 ml-md-3">
           <div id="filter_box" class="hide_box m-2  col-auto   " >
-             <div class="form-check " id="filter_data">
+             <div class="form-check p-1 " id="filter_data">
               </div>
               <div class="row justify-content-center">
               <div class='form-group m-auto'><button  id="show_result" class="btn btn-md btn-light">Go !!!</button></div>
@@ -40,7 +40,7 @@
               </div>
           </div></div>
 </div>
-<div class="row justify-content-between " id="blogs_row">
+<div class="row justify-content-around" id="blogs_row">
 <% blogs.forEach((ele)=>{ %>
     <div class="card  m-3 p-4 col-md-3 ">
         <div class="card-header text-center blog_title  font-weight-bold"><%= ele.title %></div>
