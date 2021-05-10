@@ -41,11 +41,11 @@
 </div></div>
 </div>
 <div class="container-fluid" >
-<div class=" justify-content-between row "  id="blogs_row">
+<div class=" justify-content-around row "  id="blogs_row">
 <% blogs.forEach((ele)=>{ %>
-<div class="card  m-3 p-4 col-md-3 ">
+<div class="card  m-3 p-4 col-md-4 ">
 <div class="card-header text-center blog_title  font-weight-bold"><%= ele.title %></div>
-<div class="card-body p-0">
+<div class="card-body p-2">
 <input type="text" class="blog_id" hidden value="<%= ele._id %>">
 <label class="card-title d-block text-center m-1 blog_category "><%= ele.category %></label>
 <div class="d-flex justify-content-center">  <label  class="blog_likes card-title d-block text-center m-1"><%= ele.likes%>  </label><i  class="fa fa-thumbs-up likes_icon  m-2" aria-hidden="true"></i></div>

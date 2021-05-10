@@ -47,7 +47,7 @@
 <div class = "form-group row justify-content-center mb-4    ">
     <label class="col-md-2 font-weight-bold blog_field_label text-md-center" for = "blog_title">Title</label>
     <span><%  (typeof title != 'undefined')?title:''  %></span>
-    <input type = "text" class = "form-control col-md-9" value="<%=  (typeof userInput != 'undefined')?userInput.blog_title :''  %>"   maxlength="40" name="blog_title" id = "blog_c_title" placeholder = "Enter Blog Title(max. 40 letters)">
+    <input type = "text" class = "form-control col-md-9" maxlength="40" name="blog_title" id = "blog_c_title" placeholder = "Enter Blog Title(max. 40 letters)">
     <div style="position: absolute;left:85%;"  class="input-group-append input-group-text p-1 " style="">
     <span class="" id="blog_c_titleLength">0</span> <span class="" id="blog_c_titleLimit">/40</span> 
 </div>
@@ -59,7 +59,7 @@
 
 <div class = "form-group row justify-content-center mb-4">
     <label class="col-md-2 font-weight-bold text-md-center blog_field_label" for = "blog_category">Category</label>
-    <input type = "text" class = "form-control col-md-9" value="<%=  (typeof userInput != 'undefined')?userInput.blog_category :''  %>"     placeholder = "Enter Blog Category(max. 15)" maxlength="15" id = "blog_c_category" name="blog_category" placeholder = "Enter Blog Category">
+    <input type = "text" class = "form-control col-md-9"      placeholder = "Enter Blog Category(max. 15)" maxlength="15" id = "blog_c_category" name="blog_category" placeholder = "Enter Blog Category">
     <div class="input-group-append input-group-text p-1 " style="position: absolute;left:85%;">
         <span class="" id="blog_c_categoryLength">0</span> <span class="" id="blog_c_categoryLimit">/15</span> 
     </div> 
@@ -69,7 +69,7 @@
   
 <div class = "form-group row justify-content-center mb-4">
     <label class="col-md-2 pl-4 font-weight-bold text-md-center blog_field_label"   for = "blog_content">Content</label>
-    <textarea  class="col-md-9 form-control p-1 "  id="blog_content" value="<%=  (typeof userInput != 'undefined')?userInput.blog_content:''  %>"  rows="15" name="blog_content"></textarea>
+    <textarea  class="col-md-9 form-control p-1 "  id="blog_content"  rows="15" name="blog_content"></textarea>
  </div>
  <div class="form-group row justify-content-center">
 <input type="submit" value="Create" id="create_blog" class="btn btn-lg btn-outline-dark btn_hover  btn_form m-2">

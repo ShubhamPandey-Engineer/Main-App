@@ -41,8 +41,8 @@ const { schema, create } = require("./models/blogmodel");
 
 const router=require("./blogs/Routes")
 
-/*
 
+/*
 model.remove({},(err)=>{
     console.log(err)
 })*/
