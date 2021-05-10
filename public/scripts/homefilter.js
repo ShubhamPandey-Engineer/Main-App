@@ -72,7 +72,7 @@ let renderResult=(value)=>{
   let  blogsRow=document.querySelector("#blogs_row")
   let blogs=fetch(`/blogs/sort/${value}`,{method:"GET",headers:{"Content-Type":"application/json"}})
   let blog =`<div class="container-fluid">
-  <div class=" justify-content-between row" id="blogs_row"> `
+  <div class=" justify-content-around row" id="blogs_row"> `
 
  blogsRow.innerHTML='<strong class="p-2 text-primary">Loading ...</strong>'
 
@@ -87,9 +87,9 @@ let renderResult=(value)=>{
       data["blogs"].forEach(element => {
     
      blog+=`
-       <div class="card  m-3 p-4  col-md-3">
+       <div class="card  m-3 p-4  col-md-4">
   <div class="card-header text-center blog_title  font-weight-bold">${element.title}</div>
-  <div class="card-body p-0">
+  <div class="card-body p-2">
       <input type="text" class="blog_id" hidden value="${element._id}">
     <label class="card-title d-block text-center m-1 blog_category ">${element.category}</label>
   <div class="d-flex justify-content-center">  <label  class="blog_likes card-title d-block text-center m-1">${element.likes}  </label><i class="fa fa-thumbs-up text-primary m-2 likes_icon" aria-hidden="true"></i></div>
