@@ -16,19 +16,15 @@ console.log(isAuthenticated)
 const createToken=require("./operation/middleware/jwttoken")
 
 require('dotenv').config();
+
 //importing object schema and model
 const model=require("./models/blogmodel"),
 userModel=require("./models/usermodel"),
 restify=require("restify")
 app.set("view engine","ejs");
 var bodyParser=require("body-parser");
-/*
-app.use(session({
-    secret: 'djhxcvxfgshajfgjhgsjhfgsakjeauytsdfy',
-    resave: false,
-    saveUninitialized: true
-    }));
-    */
+
+    
 const { all } = require("async");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
@@ -42,10 +38,7 @@ const { schema, create } = require("./models/blogmodel");
 const router=require("./blogs/Routes")
 
 
-/*
-model.remove({},(err)=>{
-    console.log(err)
-})*/
+
 //home route---------------
 app.use("/",router)
 
@@ -54,7 +47,7 @@ app.use("/",router)
 app.use("/blogs" ,router)
 
 
-//Post request handler -----------------------------
+//Post request handler(sigup/signin) -----------------------------
 
 //POST -Signup
 app.post('/blog/signup'
@@ -116,7 +109,7 @@ response.status=status
 
 
 
-//user Signin POT request
+//user Signin POST request
 app.post('/blog/signin',[check("email").notEmpty().withMessage("Useremail cannot be empty").isEmail().withMessage("Please enter valid email"),
 
 check("password").notEmpty().withMessage("User Password cannot be empty")],
@@ -172,12 +165,16 @@ check("password").notEmpty().withMessage("User Password cannot be empty")],
 
     })
 
-        
+  
+    
+//Error route
 app.get("*",(req,res)=>{
     res.render("404")
 })
 
 
+
+//Listen to server
 const hostname='0.0.0.0'
 app.listen(process.env.PORT || 3000,hostname,(err)=>{
     if(!err)

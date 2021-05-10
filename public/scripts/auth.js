@@ -2,7 +2,7 @@
 console.log('auth connected')
 
 
-//global variables
+//access variables
 const signupBtn=document.querySelector("#signup_btn")
 const signinBtn=document.querySelector("#signin_btn")
 
@@ -168,12 +168,6 @@ toggleSignup.addEventListener("submit",(event)=>{
 event.preventDefault()
 //load form btn--
 formLoading(signupBtn)
-//btn loading
-/*
-signupBtn.setAttribute("disabled","true")
-formLoad.classList.remove("form_load")
-formLoad.classList.add("spin")
-*/
 
 
 var data=new FormData(signUpForm)
