@@ -7,7 +7,6 @@ Blog App is an web application which allows an user to create blogs, after athen
 <li>Framework used- Express.js , Bootstrap 4</li>
 <li>3-Database used- MongoDB Atlas(cloud)</li>
 <li>4-Html template used- EJS</li>
-<li>
 
 <h4>Process </h4>
 <div>Intially when user visits the homepage , can view all blogs.
