@@ -72,7 +72,7 @@ let renderResult=(value)=>{
   let  blogsRow=document.querySelector("#blogs_row")
   let blogs=fetch(`/blogs/sort/${value}`,{method:"GET",headers:{"Content-Type":"application/json"}})
   let blog =`<div class="container-fluid">
-  <div class=" justify-content-start row" id="blogs_row"> `
+  <div class=" justify-content-between row" id="blogs_row"> `
 
  blogsRow.innerHTML='<strong class="p-2 text-primary">Loading ...</strong>'
 
