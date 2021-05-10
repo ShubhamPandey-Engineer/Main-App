@@ -25,6 +25,7 @@ Basic validations-
 
 <h4>Features </h4>
 <li>Signup/Signin authentication</li>
+<li>Filter option for blogs categories</li>
 <li>Like blog button (requires authentication)</li>
 <li>Edit blog (requires authentication)</li>
 <li>Delete blog (requires authentication)</li>
