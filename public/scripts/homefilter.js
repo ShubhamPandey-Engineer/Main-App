@@ -22,8 +22,7 @@ hideFilter.addEventListener("click",()=>{
 
 filterBtn.addEventListener("click",(event)=>{
 //call api
-
-let filter=`<div class='filter_wrapper p-2 justify-content-center'><label class=" text-center w-100 filter_category  mb-1 font-weight-bold text-white">Categories:</label>`
+let filter=`<div class='filter_wrapper p-3 justify-content-center'><label class=" text-center w-100 filter_category  mb-1 font-weight-bold text-white">Categories:</label>`
 //get all blog category
 fetch(`/blogs/filter`,{method:"GET",headers:{"Content-Type":"application/json"}})
 .then(json=>json.json())
@@ -73,9 +72,12 @@ let renderResult=(value)=>{
   let  blogsRow=document.querySelector("#blogs_row")
   let blogs=fetch(`/blogs/sort/${value}`,{method:"GET",headers:{"Content-Type":"application/json"}})
   let blog =`<div class="container-fluid">
-  <div class=" justify-content-between row" id="blogs_row"> `
+  <div class=" justify-content-start row" id="blogs_row"> `
 
  blogsRow.innerHTML='<strong class="p-2 text-primary">Loading ...</strong>'
+
+
+ 
 
  setTimeout(()=>{
   blogsRow.classList.remove("blur")
@@ -95,7 +97,7 @@ let renderResult=(value)=>{
   <div class="d-flex justify-content-center  p-2" >
   <a  data-toogle="tooltip" title="View this blog" href="/blogs/detail/${element._id}"><button  style="width: 38px;height: 38px;" class="btn btn-md  blog_visit m-2"><i class="fa fa-external-link" aria-hidden="true"></i>
   </button></a>
-  <button type="button" data-toogle="tooltip"   title="Like this blog!!!"  style="color:#FFF;width: 38px;height: 38px;" class=" blog_like btn  btn-md m-2" data-blogid="<%= ele._id %>">
+  <button type="button" data-toogle="tooltip"   title="Like this blog!!!"  style="color:#FFF;width: 38px;height: 38px;" class=" blog_like btn  btn-md m-2" data-blogid='${element._id}'>
   <i class="border-primary fa fa-thumbs-up blog_like_icon not_liked " onclick='likeOrDislike(this)' aria-hidden="true"></i>
   </button>
   </div>

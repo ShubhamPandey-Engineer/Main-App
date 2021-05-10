@@ -67,15 +67,18 @@ filter: blur(14px);
     position: absolute;
     justify-content: center;
     padding: .6rem;
+    overflow-y: scroll;
+    height:18rem;
     transition: all .6s ease-in-out;
-    margin:auto;
+    margin:2rem;
 }
 
 .filter_parent{
     background-color:#FFF;
     text-align: left;
     border-radius: 12px;
-    margin:.7rem;
+    margin-top:.7rem;
+    width:100%;
 
 }
 .text{
@@ -164,7 +167,7 @@ to{
 }
 
 .not_liked{
-    text-shadow: 0 0 2px blue;
+    text-shadow: 0 0 2px #007bff;
 
 }
 .blog_header{
@@ -188,6 +191,23 @@ to{
 }
 
 /* buttons */
+
+/* btn loader */
+.form_load{
+    opacity: 0 !important;
+}
+
+
+.spin{
+    animation: spin .3s infinite ease-in-out;
+}
+@keyframes spin {
+    from{
+        transform: rotate(360deg);
+    }
+
+    
+}
 
 button:focus{
     box-shadow: none !important;
@@ -250,7 +270,7 @@ button:focus{
     margin:.6rem
 }
 .hide_box{
-    display: none;
+    display: none !important;
 }
 
 .signup_success{
@@ -377,6 +397,9 @@ z-index:99999;
     margin: 3rem auto .6rem auto;
     background-color: var(--secondColor);
     border-radius: 6px;
+    position: relative;
+    bottom:0;
+    top:20vh;
 }
 
 
@@ -468,7 +491,9 @@ to{
 
 
 
-
+body{
+    font-family:Helvetica, Neue,Helvetica,Arial,sans-serif !important;
+}
 
 
 

@@ -3,10 +3,14 @@ console.log('auth connected')
 
 
 //global variables
+const signupBtn=document.querySelector("#signup_btn")
+const signinBtn=document.querySelector("#signin_btn")
+
 const toggleFormBtn=document.querySelector(".toggle_btn")
 const toggleNext=document.querySelector(".toggle_next")
 const toggleSignin=document.getElementById("toggle_signin")
 const toggleSignup=document.getElementById("toggle_signup")
+const formLoad=document.querySelectorAll(".fa-spinner")
 
 //forms
 const signInForm=document.getElementById("in_form")
@@ -90,8 +94,7 @@ toggleAuthForm()
 
 
 var pageStatus=document.querySelector("#page_status")
-
-let callAjax=(url,data)=>{
+let callAjax=(url,data,btn,spinner)=>{
 
 let result={
 }
@@ -101,6 +104,7 @@ type: "POST",
 data: data,
 
 success: function(res) {
+    btn.removeAttribute("disabled")
     console.log(res)
 res=JSON.parse(res)
 console.log(res)
@@ -161,8 +165,17 @@ return result
 
 //SignUp function 
 toggleSignup.addEventListener("submit",(event)=>{
-
 event.preventDefault()
+//load form btn--
+formLoading(signupBtn)
+//btn loading
+/*
+signupBtn.setAttribute("disabled","true")
+formLoad.classList.remove("form_load")
+formLoad.classList.add("spin")
+*/
+
+
 var data=new FormData(signUpForm)
 dataObject={}
 data.forEach((ele,index)=>{
@@ -170,7 +183,7 @@ dataObject[index] = ele
 
 })
 
-let result=callAjax("/blog/signup",dataObject)
+let result=callAjax("/blog/signup",dataObject,signupBtn,formLoad[0])
 
 
 })
@@ -184,18 +197,26 @@ let result=callAjax("/blog/signup",dataObject)
 //SignIn function 
 signInForm.addEventListener("submit",(event)=>{
 event.preventDefault()
+//load form btn--
+formLoading(signinBtn)
 formData=new FormData(signInForm)
 signInData={}
 formData.forEach((ele,index)=>{
 signInData[index] = ele
 
 })
-let result=callAjax("/blog/signin",signInData)
+let result=callAjax("/blog/signin",signInData,signinBtn,formLoad[0])
 console.log(result["res"])
 
 
 })
 
+
+
+//form loading (btn)
+let formLoading=(btn)=>{
+    btn.setAttribute("disabled","true")
+}
 
 
 

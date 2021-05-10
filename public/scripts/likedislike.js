@@ -51,7 +51,7 @@ console.log("click")
   
   }
   
-  //unlike blog
+  //like blog
   let handleLikes=(blogId,event,iconThumb)=>{
   
     //scale icon
@@ -63,10 +63,12 @@ console.log("click")
      
      //call ajaz (like)
      let url =`blogs/like/${blogId}`
-  
-     likeDisAjax(url,blogId,event)
+     
+      likeDisAjax(url,blogId,event)
+
     
   }
+  //unlike
   let handleUnlikes =(blogId,event,iconThumb)=> {
   
   iconThumb.classList.remove("scale")

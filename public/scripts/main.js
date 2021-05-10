@@ -37,11 +37,11 @@ let networkStatus=(event)=>{
   if(event == "offline")
   {
     console.log(event)
-    pageStatus.innerHTML=`  <div class="alert alert-warning text-dark fixed-top alert-dismissible fade show  " role="alert">
+    pageStatus.innerHTML=`  <div class="alert alert-warning text-warning fixed-top alert-dismissible fade show  " role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-    <strong>Please connect to the internet  <i class="fa fa-plug p-2" aria-hidden="true"><i class=" p-2 fa fa-thumbs-down" aria-hidden="true"></i>
+    <strong>Please connect to the internet.  <i class="fa fa-plug p-2" aria-hidden="true"><i class=" p-2 fa fa-thumbs-down" aria-hidden="true"></i>
     </i>
     </strong> 
   </div>`
@@ -53,7 +53,7 @@ let networkStatus=(event)=>{
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-    <strong>You are back ...... <i class="fa fa-thumbs-up p-2" aria-hidden="true"></i>
+    <strong>You are back with internet !!! <i class="fa fa-thumbs-up p-2" aria-hidden="true"></i>
     </strong> 
   </div>`
   setTimeout(()=>{

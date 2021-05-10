@@ -1,135 +1,142 @@
 <title>Auth</title>
 <% if(typeof data == "undefined")  {%>
-    <%-  include("../partials/header") %> 
-    <% }   else { %>
-       <%-  include("../partials/header-login") %>
-      <% } %>
+<%-  include("../partials/header") %> 
+<% }   else { %>
+<%-  include("../partials/header-login") %>
+<% } %>
 
-        
+
 
 <br>
 
 <div class="container-fluid p-0 p-md-5" style="margin-top: 2rem;" >
-    <div class="modal fade " id="myModal">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-    
-            <div class="modal-body alert-danger p-1 ">
-             <h6 class="alert-danger text-center  mb-3">Please fill the following details:</h6>
-                <div class = "d-block " id="error_box"></div>
-          
-            </div>
-            
-            <!-- Modal footer -->
-            <div class="modal-footer alert-danger">
-              <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Back 
-                  <i class="fa fa-backward" aria-hidden="true"></i> </button>
-            </button>
-            </div>
-            
-          </div></div></div>
- 
+<div class="modal fade " id="myModal">
+<div class="modal-dialog modal-sm">
+<div class="modal-content">
+
+<div class="modal-body alert-danger p-1 ">
+<h6 class="alert-danger text-center  mb-3">Please fill the following details:</h6>
+<div class = "d-block " id="error_box"></div>
+
+</div>
+
+<!-- Modal footer -->
+<div class="modal-footer alert-danger">
+<button type="button" class="btn btn-outline-dark" data-dismiss="modal">Back 
+<i class="fa fa-backward" aria-hidden="true"></i> </button>
+</button>
+</div>
+
+</div></div></div>
+
 <div id="user_auth" class="col-md-6">
-      <input type="checkbox" class="toggle_btn"><span  class="font-weight-bold text-center m-auto toggle_next">SignIn</span>
-    
-    <div class="" id="toggle_signup">
-        <div class="jumbotron p-1 text-center  form_jumbo">
-            <h4 class="font-weight-bold">SignUp</h4>
-            <hr class="my-2">
-          
-        </div>
-        <div class="container-fluid form_wrapper">
-        
+<input type="checkbox" class="toggle_btn"><span  class="font-weight-bold text-center m-auto toggle_next">SignIn</span>
 
-        <!-- check errors-->
-        <% if(typeof errors != "undefined") { %> 
-            <%- include("../partials/showerrors")  %> 
-            <% } %>
-        <form method="POST" action="/user/auth?type=signup"  name="signup_form" id="up_form" class=""  enctype="multipart/form-data">
-         
-        <div class = "form-group row justify-content-center mb-4    ">
-            <label class="col-md-3 font-weight-bold blog_field_label text-md-center" for = "blog_title">UserName</label>
-            <input type = "text" class = "form-control col-md-7"   name="userName" id = "user_up_name" placeholder = "Enter your name">
-        </div>
-        
-        
-        
-        <div class = "form-group row justify-content-center mb-4">
-            <label class="col-md-3 font-weight-bold text-md-center blog_field_label" for = "user_up_email">UserEmail </label>
-            <input type = "text" class = "form-control col-md-7"  id = "user_up_email" name="userEmail" placeholder = "Enter your email">
-           
-        </div>
-        
-        <div class = "form-group row  justify-content-center mb-4">
-            <label class="col-md-3 font-weight-bold text-md-center blog_field_label" for = "user_up_password">UserPassword </label>
-        <div class="input-group  col-md-7 mb-3 input-group-md p-0">
-            <input type="password"   name="userPassword" id="user_up_password" class="form-control p-3" placeholder="Create new password">
-            <div class="input-group-append eye_signup_parent" onclick="showPassword(this,'signup')">
-                <i class="fa fa-eye eye show_password eye_signup" aria-hidden="true" >  </i>
-              </div>
-          </div>
-        </div>
-         <div class="form-group row justify-content-center">
-            <div class="form-group col-md-4 text-center">
-        <input type="submit" value="SignUp" id="signup_btn" class="btn btn-md btn-outline-dark btn_hover btn_form bg-dark "></div>
-        <div class="form-group col-md-4 text-center">
-        <input type="reset" value="Clear" class="btn btn-md btn-warning btn_form_clear btn_hover btn-outline-dark btn_form">
-        </div>
-        </div>
-        </form>
-        </div>
-      
-        <script src="/scripts/main.js"></script>
-        
-        
-    </div>
+<div class="" id="toggle_signup">
+<div class="jumbotron p-1 text-center  form_jumbo">
+<h4 class="font-weight-bold">SignUp</h4>
+<hr class="my-2">
 
-    <div class="" id="toggle_signin">
-      
-        
-            <div class="jumbotron p-1 text-center form_jumbo">
-                <h4 class="font-weight-bold">SignIn</h4>
-                <hr class="my-2">
-              
-            </div>
-            <div class="container-fluid form_wrapper">
+</div>
+<div class="container-fluid form_wrapper">
 
-    
-            <!-- check errors-->
-            <% if(typeof errors != "undefined") { %> 
-                <%- include("../partials/showerrors")  %> 
-                <% } %>
-            <form method="POST" action="/user/signin" name="signin_form" id="in_form" class="" enctype="multipart/form-data">
-             
-      
-            
-            
-            <div class = "form-group row justify-content-center mb-4">
-                <label class="col-md-3 font-weight-bold text-md-center blog_field_label" for = "user_email">UserEmail </label>
-                <input type = "text" class = "form-control col-md-7"  id = "user_in_email" name="email" placeholder = "Enter your email">
-               
-            </div>
-            
-            <div class = "form-group row  justify-content-center mb-4">
-                <label class="col-md-3 font-weight-bold text-md-center blog_field_label" for = "user_password">UserPassword </label>
-            <div class="input-group  col-md-7 mb-3 input-group-md p-0">
-                <input type="password"   name="password" id="user_in_password" class="form-control p-3" placeholder="Enter your password">
-                <div class="input-group-append eye_signin_parent" onclick="showPassword(this,'signin')">
-                    <i class="fa fa-eye eye show_password eye_signin" aria-hidden="true" >  </i>
-                  </div>
-              </div>
-            </div>
-             <div class="form-group row justify-content-center">
-                <div class="form-group col-md-4 text-center">
-            <input type="submit" value="SignIn"  class="btn btn-md btn-outline-dark btn_hover btn_form bg-dark "></div>
-            <div class="form-group col-md-4 text-center">
-            <input type="reset" value="Clear" class="btn btn-md btn-warning btn_form_clear btn_hover btn-outline-dark btn_form">
-            </div>
-            </div>
-            </form>
-            </div>
-          
-    </div>
+
+<!-- check errors-->
+<% if(typeof errors != "undefined") { %> 
+<%- include("../partials/showerrors")  %> 
+<% } %>
+<form method="POST" action="/user/auth?type=signup"  name="signup_form" id="up_form" class=""  enctype="multipart/form-data">
+
+<div class = "form-group row justify-content-center mb-4    ">
+<label class="col-md-3 blog_field_label text-md-center" for = "blog_title">UserName</label>
+<input type = "text" class = "form-control col-md-7"   name="userName" id = "user_up_name" placeholder = "Enter your name">
+</div>
+
+
+
+<div class = "form-group row justify-content-center mb-4">
+<label class="col-md-3 text-md-center blog_field_label" for = "user_up_email">UserEmail </label>
+<input type = "text" class = "form-control col-md-7"  id = "user_up_email" name="userEmail" placeholder = "Enter your email">
+
+</div>
+
+<div class = "form-group row  justify-content-center mb-4">
+<label class="col-md-3 text-md-center blog_field_label" for = "user_up_password">UserPassword</label>
+<div class="input-group  col-md-7 mb-3 input-group-md p-0">
+<input type="password"   name="userPassword" id="user_up_password" class="form-control p-3" placeholder="Create new password">
+<div class="input-group-append eye_signup_parent" onclick="showPassword(this,'signup')">
+<i class="fa fa-eye eye show_password eye_signup" aria-hidden="true" >  </i>
+</div>
+</div>
+</div>
+
+<div class="form-group row justify-content-center">
+<div class="form-group col-md-4 text-center">
+<button  type="submit" id="signup_btn" class="btn btn-md btn-outline-dark btn_hover btn_form bg-dark ">
+SignUp
+</button>
+
+</div>
+<div class="form-group col-md-4 text-center">
+<input type="reset" value="Clear" class="btn btn-md btn-warning btn_form_clear btn_hover btn-outline-dark btn_form">
+</div>
+</div>
+</form>
+</div>
+
+<script src="/scripts/main.js"></script>
+
+
+</div>
+
+<div class="" id="toggle_signin">
+
+
+<div class="jumbotron p-1 text-center form_jumbo">
+<h4 class="font-weight-bold">SignIn</h4>
+<hr class="my-2">
+
+</div>
+<div class="container-fluid form_wrapper">
+
+
+<!-- check errors-->
+<% if(typeof errors != "undefined") { %> 
+<%- include("../partials/showerrors")  %> 
+<% } %>
+<form method="POST" action="/user/signin" name="signin_form" id="in_form" class="" enctype="multipart/form-data">
+
+
+
+
+<div class = "form-group row justify-content-center mb-4">
+<label class="col-md-3 text-md-center blog_field_label" for = "user_email">UserEmail </label>
+<input type = "text" class = "form-control col-md-7"  id = "user_in_email" name="email" placeholder = "Enter your email">
+
+</div>
+
+<div class = "form-group row  justify-content-center mb-4">
+<label class="col-md-3 text-md-center blog_field_label" for = "user_password">UserPassword </label>
+<div class="input-group  col-md-7 mb-3 input-group-md p-0">
+<input type="password"   name="password" id="user_in_password" class="form-control p-3" placeholder="Enter your password">
+<div class="input-group-append eye_signin_parent" onclick="showPassword(this,'signin')">
+<i class="fa fa-eye eye show_password eye_signin" aria-hidden="true" >  </i>
+</div>
+</div>
+</div>
+<div class="form-group row justify-content-center">
+<div class="form-group col-md-4 text-center">
+<button type="submit" id="signin_btn"  class="btn btn-md btn-outline-dark btn_hover btn_form bg-dark ">SignIn 
+<i class="fa fa-spinner  form_load" aria-hidden="true"></i>
+</button> </div>
+<div class="form-group col-md-4 text-center">
+<input type="reset" value="Clear" class="btn btn-md btn-warning btn_form_clear btn_hover btn-outline-dark btn_form">
+</div>
+</div>
+</form>
+</div>
+
+</div>
 </div>
 </div>
 

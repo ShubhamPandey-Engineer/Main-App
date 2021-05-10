@@ -113,9 +113,12 @@ var unlikeBlog=async(req,res)=>
 {   
     try{
       blogModel.findOneAndUpdate({_id:req.params.blogid},{$pull:{likedBy:{id:res.user._id}}},(err,blog)=>{
-          blog.likes--;
+                  
+          blog.likes--
           blog.save()
           res.send(blog.likes.toString())
+           
+          
       })
     }
   catch(err){

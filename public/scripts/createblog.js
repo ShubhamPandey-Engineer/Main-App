@@ -17,24 +17,29 @@ let successAlert=`<div class="alert  fixed-top alert-dismissible fade show" role
 
 
 let  createForm=document.querySelector("#blog_c_form")
+let createBtn=document.querySelector("#create_blog")
+
 createForm.addEventListener("submit",(event)=>{
   event.preventDefault()
+  formLoading(createBtn)
   var data=new FormData(createForm)
 dataObject={}
 data.forEach((ele,index)=>{
     dataObject[index] = ele
 })
 
-var formValidation=(data)=>{
+var formValidation=(data,formBtn)=>{
  let inputValues=Object.values(data);
  let errorArr=[]
+ formBtn.removeAttribute("disabled")
+
 
  for (const key in data) {
     if(key =="blog_title" && data[key] =="")
     {
       errorArr.push("Blog title cannot be empty")
     }
-    if(key =="blog_category" && data[key] =="")
+      if(key =="blog_category" && data[key] =="")
     {
       errorArr.push("Blog category cannot be empty")
     }if(key =="blog_content" && data[key] =="")
@@ -70,18 +75,20 @@ return true
 }
 
 
-var createBlogAjax=(url,data)=>{
+var createBlogAjax=(url,data,formBtn)=>{
 
   $.ajax({
           url: url,
           type: "POST",
           data: data,
           success: function(result) {
+            formBtn.removeAttribute("disabled")
            let object=JSON.parse(result)["data"]
 
 
             if(object)
             {
+              cleanForm()
              const pageStatus =document.querySelector("#page_status")
              const pageStatuss =document.querySelector("#page_status")
              let successAlert=`<div class="alert m-1 fixed-top alert-dismissible fade show" role="alert">
@@ -109,10 +116,10 @@ var createBlogAjax=(url,data)=>{
   
     
 
-let formValid=formValidation(dataObject)
+let formValid=formValidation(dataObject,createBtn)
 if(formValid)
 {
-createBlogAjax("/blogs/create",dataObject)
+createBlogAjax("/blogs/create",dataObject,createBtn)
 }
 
 
@@ -152,6 +159,26 @@ var inputLimit=(inputField,inputFiledLength,maxLimit)=>{
   }
 
 }
+
+
+
+//form loading (btn)
+let formLoading=(btn)=>{
+  btn.setAttribute("disabled","true")
+}
+
+//clean form
+
+let cleanForm=()=>{
+let inputs=document.querySelectorAll("input[type='text']")
+let content=document.querySelector("#blog_content")
+console.log(inputs)
+inputs.forEach((ele)=>{
+  ele.value=""
+})
+}
+
+
 
 
 
