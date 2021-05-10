@@ -21,8 +21,8 @@ hideFilter.addEventListener("click",()=>{
 
 
 filterBtn.addEventListener("click",(event)=>{
-//call api
 let filter=`<div class='filter_wrapper p-3 justify-content-center'><label class=" text-center w-100 filter_category  mb-1 font-weight-bold text-white">Categories:</label>`
+
 //get all blog category
 fetch(`/blogs/filter`,{method:"GET",headers:{"Content-Type":"application/json"}})
 .then(json=>json.json())
@@ -68,6 +68,7 @@ renderResult(JSON.stringify(obj))
 })
 
 
+//render html
 let renderResult=(value)=>{
   let  blogsRow=document.querySelector("#blogs_row")
   let blogs=fetch(`/blogs/sort/${value}`,{method:"GET",headers:{"Content-Type":"application/json"}})
@@ -124,7 +125,7 @@ let showFilterResult=()=>{
 
 
 
-
+//request sorted blogs
  function getSortValue(value){
    let data={
      sortValue:value
