@@ -1,13 +1,17 @@
+
+/*defined variables */
 :root{
     --mainColor: rgba(4, 82, 170, 1);
     --secondColor: rgb(144, 174, 207);
 
 }
 
+/* form label */
 .blog_field_label{
     padding: 4px;
 }
 
+/* navbar styles */
 .navbar{
     background-color: rgba(4, 82, 170, 1);
     position: relative;
@@ -99,7 +103,10 @@ filter: blur(14px);
 }
 
 
-/* card */
+/* filter styles end */
+
+
+/* card  styles starts*/
 .card{
     background-color: rgba(26, 89, 130, 0.1)  !important;
     transition: box-shadow .8s ease-in-out;
@@ -185,11 +192,12 @@ to{
     padding-left: 3px;
 }
 
-.blog_title{
+/* card  styles ends*/
 
-}
 
-/* buttons */
+
+
+/* buttons  styles starts*/
 
 /* btn loader */
 .form_load{
@@ -212,6 +220,7 @@ button:focus{
     box-shadow: none !important;
 }
 
+/* auth toggler btn's */
 .toggle_btn{
     -webkit-appearance: none;
     height:30px;
@@ -300,7 +309,6 @@ box-shadow:  0 0 0 8px silver;
 
 
 
-/*  */
 #create_blog{
     background-color:  var(--mainColor) ;
 }
@@ -308,6 +316,8 @@ box-shadow:  0 0 0 8px silver;
 #blog_c_form{
     background-color: rgba(26, 89, 130, 0.1) !important;
 }
+
+/* buttons  styles ends*/
 
 
 /* alert status */
@@ -323,6 +333,7 @@ box-shadow:  0 0 0 8px silver;
     border:1.5px solid var(--secondColor);
 }
 
+/* page status */
 #page_status{
 transition: all 1s ease-in-out;
 width: 100%;
@@ -372,7 +383,7 @@ z-index:99999;
 }
 
 
-/*details page*/
+/*blog details page styles starts*/
 .blog_detail_title{
     color:gray;
     text-align: center;
@@ -388,6 +399,8 @@ z-index:99999;
     margin:0;
     padding-left: 1rem;
 }
+
+/*blog details page styles ends*/
 
 
 /* footer */
@@ -508,6 +521,8 @@ body{
     border-radius: 0 5px 5px 0;
     height: 38px;
 }
+
+/* media query for mobile devices */
 
 @media screen  and (max-width:480px) {
     #user_nav_info{
