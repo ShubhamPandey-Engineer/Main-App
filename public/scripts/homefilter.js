@@ -29,7 +29,7 @@ fetch(`/blogs/filter`,{method:"GET",headers:{"Content-Type":"application/json"}}
 .then(category=>{
   category["blogs"].forEach(ele=>{
    filter+=`<div>
-   <label class="d-block p-2 filter_parent">
+   <label class="d-block   p-2 filter_parent">
    <label class="text mb-0" for='${ele}'>
    <input type="checkbox" name="list"   id="${ele}" value='${ele}' class=" filter_choice form-check-input ">${ele}</label>
    

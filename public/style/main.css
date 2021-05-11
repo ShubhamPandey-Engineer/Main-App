@@ -71,17 +71,19 @@ filter: blur(14px);
     justify-content: center;
     padding: .6rem;
     overflow-y: scroll;
-    height:18rem;
+    height:12.5rem;
     transition: all .6s ease-in-out;
     margin:2rem;
+    width: 16rem;
 }
+
+
 
 .filter_parent{
     background-color:#FFF;
     text-align: left;
     border-radius: 12px;
     margin-top:.7rem;
-    width:100%;
 
 }
 .text{
