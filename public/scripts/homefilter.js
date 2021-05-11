@@ -37,6 +37,7 @@ fetch(`/blogs/filter`,{method:"GET",headers:{"Content-Type":"application/json"}}
   })
 filter+=`</div>`
   filterBox.classList.remove("hide_box")
+  filterBox.classList.add("ani_up")
 blogsRow.classList.add("blur")
   filterData.innerHTML=filter
 
@@ -49,7 +50,8 @@ const showResult=document.querySelector("#show_result")
 showResult.addEventListener("click",(event)=>{
   let arr=[]
 
-  filterBox.classList.add("hide_box")
+ filterBox.classList.add("hide_box")
+
 
 let checkBoxes=document.querySelectorAll(".filter_choice")
 checkBoxes.forEach((ele)=>{
