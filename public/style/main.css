@@ -296,6 +296,7 @@ button:focus{
 box-shadow:  0 0 0 8px silver;
 }
 
+
 .btn_form{
     width: 112px;
 
@@ -494,6 +495,8 @@ to{
     color: #FFF;
     padding: .6rem;
     margin-bottom: 0 !important;
+    border-radius: 6px  6px 4px 4px !important;
+    
 }
 
 
