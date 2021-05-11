@@ -3,8 +3,8 @@
 <h4>Description </h4>
 Blog App is an web application which allows an user to create blogs, after athentication.
 <h4>Technology used</h4>
-<li>HTML,CSS3,Javascript,Node js</li>
-<li>Framework used- Express.js , Bootstrap 4</li>
+<li>1-HTML,CSS3,Javascript,Node js</li>
+<li>2-Framework used- Express.js , Bootstrap 4</li>
 <li>3-Database used- MongoDB Atlas(cloud)</li>
 <li>4-Html template used- EJS</li>
 
