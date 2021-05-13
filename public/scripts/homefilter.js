@@ -90,7 +90,7 @@ let renderResult=(value)=>{
       data["blogs"].forEach(element => {
     
      blog+=`
-       <div class="card  m-auto p-4  col-md-3">
+       <div class="card  mb-5 p-4  col-md-3">
   <div class="card-header text-center blog_title  font-weight-bold">${element.title}</div>
   <div class="card-body p-2">
       <input type="text" class="blog_id" hidden value="${element._id}">
