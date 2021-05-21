@@ -16,12 +16,12 @@
 <h4 class="display text-center  blog_header font-weight-bold">All Blogs</h4>
 <hr class="my-2">
 <p class="lead text-center pt-3">
-<a class="btn btn-md text-white font-weight-bold btn_hover" style="background-color: var(--mainColor);" href="/blogs/create" role="link">Create new blog</a>
+<a class="btn btn-md text-white font-weight-bold btn_hover home_create_btn" style="background-color: var(--mainColor);" href="/blogs/create" role="link">Create new blog</a>
 </p>
 </div>
 </div>
 
-<div class="w-100  text-center ">
+<div class="w-100  text-center mb-2">
 <button class="btn  btn-md text-white text-weight-bold btn_hover" style="background-color: var(--mainColor);" id="filter_btn">Filter</button>
 <!-- <select class="form-select-lg form-select m-auto col-md-2 col-xs-6 col-sm-6 form-control" id="blog_sort" onchange="getSortValue(this.value)">
 <option selected>Sort by</option>
@@ -40,10 +40,10 @@
 </div>
 </div></div>
 </div>
-<div class="container-fluid" >
-<div class=" justify-content-around row "  id="blogs_row">
+<div class="container-fluid text-center m-auto"  >
+<div class=" justify-content-left row m-auto "  id="blogs_row">
 <% blogs.forEach((ele)=>{ %>
-<div class="card  m-3 p-4 col-md-4 ">
+<div class="card-demo card   p-3  mb-3 ">
 <div class="card-header text-center blog_title  font-weight-bold"><%= ele.title %></div>
 <div class="card-body p-2">
 <input type="text" class="blog_id" hidden value="<%= ele._id %>">

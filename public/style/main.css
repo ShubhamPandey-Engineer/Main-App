@@ -42,6 +42,7 @@
 /* filter */
 
 .hide_box{
+    transition: all .5s ease-in-out;
     display: none;
 }
 
@@ -109,9 +110,14 @@ filter: blur(14px);
 
 
 /* card  styles starts*/
+.card-demo{
+    width:350px;
+    margin:1.5rem;
+}
 .card{
     background-color: rgba(26, 89, 130, 0.1)  !important;
     transition: box-shadow .8s ease-in-out;
+  
 
 }
 #blogs_row .card:hover{
@@ -295,6 +301,7 @@ button:focus{
 box-shadow:  0 0 0 8px silver;
 }
 
+
 .btn_form{
     width: 112px;
 
@@ -352,6 +359,10 @@ z-index:99999;
     background-color:var(--secondColor);
     color:#FFF;
 
+}
+.ani_up{
+    animation: move_alert 1s  ease-in-out;
+    transition: all .6s ease-in-out;
 }
 
 @keyframes move_alert{
@@ -489,6 +500,8 @@ to{
     color: #FFF;
     padding: .6rem;
     margin-bottom: 0 !important;
+    border-radius: 6px  6px 4px 4px !important;
+    
 }
 
 

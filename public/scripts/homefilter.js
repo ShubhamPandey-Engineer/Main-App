@@ -37,6 +37,7 @@ fetch(`/blogs/filter`,{method:"GET",headers:{"Content-Type":"application/json"}}
   })
 filter+=`</div>`
   filterBox.classList.remove("hide_box")
+  filterBox.classList.add("ani_up")
 blogsRow.classList.add("blur")
   filterData.innerHTML=filter
 
@@ -49,7 +50,8 @@ const showResult=document.querySelector("#show_result")
 showResult.addEventListener("click",(event)=>{
   let arr=[]
 
-  filterBox.classList.add("hide_box")
+ filterBox.classList.add("hide_box")
+
 
 let checkBoxes=document.querySelectorAll(".filter_choice")
 checkBoxes.forEach((ele)=>{
@@ -73,7 +75,7 @@ let renderResult=(value)=>{
   let  blogsRow=document.querySelector("#blogs_row")
   let blogs=fetch(`/blogs/sort/${value}`,{method:"GET",headers:{"Content-Type":"application/json"}})
   let blog =`<div class="container-fluid">
-  <div class=" justify-content-around row" id="blogs_row"> `
+  <div class=" justify-content-start row" id="blogs_row"> `
 
  blogsRow.innerHTML='<strong class="p-2 text-primary">Loading ...</strong>'
 
@@ -88,7 +90,7 @@ let renderResult=(value)=>{
       data["blogs"].forEach(element => {
     
      blog+=`
-       <div class="card  m-3 p-4  col-md-4">
+       <div class="card card-demo  mb-5 p-4  ">
   <div class="card-header text-center blog_title  font-weight-bold">${element.title}</div>
   <div class="card-body p-2">
       <input type="text" class="blog_id" hidden value="${element._id}">
