@@ -110,9 +110,14 @@ filter: blur(14px);
 
 
 /* card  styles starts*/
+.card-demo{
+    width:350px;
+    margin:1.5rem;
+}
 .card{
     background-color: rgba(26, 89, 130, 0.1)  !important;
     transition: box-shadow .8s ease-in-out;
+  
 
 }
 #blogs_row .card:hover{

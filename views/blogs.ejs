@@ -40,10 +40,10 @@
 </div>
 </div></div>
 </div>
-<div class="container-fluid" >
-<div class=" justify-content-around row "  id="blogs_row">
+<div class="container-fluid text-center m-auto"  >
+<div class=" justify-content-left row m-auto "  id="blogs_row">
 <% blogs.forEach((ele)=>{ %>
-<div class="card   p-4 col-md-3 mb-5">
+<div class="card-demo card   p-3  mb-3 ">
 <div class="card-header text-center blog_title  font-weight-bold"><%= ele.title %></div>
 <div class="card-body p-2">
 <input type="text" class="blog_id" hidden value="<%= ele._id %>">
