@@ -25,7 +25,7 @@ connectDB()
 
 
 //HomePage middleware
-var HomePage=async (req,res)=>
+exports.HomePage=async (req,res)=>
 {
 
 try{
@@ -50,7 +50,7 @@ res.render("404")
 }
 
 //function to get user liked blog
-var likedBlog=async (req,res,next)=>{
+exports.likedBlog=async (req,res,next)=>{
 try{
 let blogs=await (await blogModel.find({"likedBy.id":res.user._id},{"_id":1}))
 console.log(blogs)
@@ -68,7 +68,7 @@ console.log("error",err)
 
 //Like a Blog
 
-var  likeBlog= async(req,res)=>
+exports.likeBlog= async(req,res)=>
 {   
 console.log("likkekeekek")
 try{
@@ -97,7 +97,7 @@ console.log(err)
 
 
 //remove a like
-var unlikeBlog=async(req,res)=>
+exports.unlikeBlog=async(req,res)=>
 {   
 try{
 blogModel.findOneAndUpdate({_id:req.params.blogid},{$pull:{likedBy:{id:res.user._id}}},(err,blog)=>{
@@ -117,13 +117,13 @@ console.log(err)
 
 
 //CreatePage middleware
-var CreateBlog=(req,res,next)=>{
+exports.CreateBlog=(req,res,next)=>{
 res.render("create",{data:res.user})
 
 }
 
 //CreatePage POST middleware
-var CreateBlogPost=(
+exports.CreateBlogPost=(
 async (req,res)=>{
 console.log("mk")
 const title= req.body.blog_title
@@ -160,7 +160,7 @@ console.log("could not create the new post")
 
 
 //DeatailPage middleware
-var DetailPage=async(req,res)=>{
+exports.DetailPage=async(req,res)=>{
 
 //Blog detail
 const blogId=req.params.id;
@@ -181,7 +181,7 @@ console.log("could not get detail route")
 
 
 //EditPage middleware
-var EditPage=async(req,res)=>{
+exports.EditPage=async(req,res)=>{
 try{
 
 await blogModel.findById(req.params.id,(err,myblog)=>{
@@ -201,7 +201,7 @@ console.log('cannot find the post for edit')
 
 
 //Edit Route -POST
-var UpdateBlog=async (req,res,next)=>{
+exports.UpdateBlog=async (req,res,next)=>{
 
 //Edit  blog-Post
 console.log(res.user)
@@ -228,7 +228,7 @@ console.log('cannot update the post')
 
 //Delete Route 
 
-var DeleteBlog=async (req,res,next)=>{
+exports.DeleteBlog=async (req,res,next)=>{
 try{
 await blogModel.findByIdAndDelete(req.params.id,(err)=>{
 if(!err)
@@ -248,13 +248,13 @@ console.log('cannot delete the post')
 }
 
 //Auth middleware
-var AuthUser=(req,res,next)=>{   
+exports.AuthUser=(req,res,next)=>{   
 res.render("user/auth")
 }
 
 //Auth- SignUp
 
-var SignUp=(
+exports.SignUp=(
 [
 check("userName").notEmpty().withMessage("Username cannot be empty"),
 check("userEmail").isEmail().withMessage("Please enter valid email"),
@@ -312,7 +312,7 @@ console.log('hash not created')
 
 
 //SignIn middleware
-var SignIn=(
+exports.SignIn=(
 [check("email").notEmpty().withMessage("Useremail cannot be empty").isEmail().withMessage("Please enter valid email"),
 check("password").notEmpty().withMessage("User Password cannot be empty")],
 
@@ -379,7 +379,7 @@ console.log(token)
 //Filter middleware
 
 //Filter blogs-show checkboxes
-var  catergoryFilter= async(req,res)=>{
+exports.catergoryFilter= async(req,res)=>{
 let filterType=req.params.type
 try{
 let blogs  =await blogModel.distinct("category")
@@ -392,7 +392,7 @@ console.log("filter not working")
 
 
 //Sort middleware
-var sorting =async (req,res)=>{
+exports.sorting =async (req,res)=>{
 let sortType=req.params.type
 obj=JSON.parse(sortType)
 if(obj["data"].length == 0)
@@ -414,7 +414,7 @@ res.send(JSON.stringify({blogs}))
 
 
 //middleware for handling error
-var errorPage=async(req,res)=>{
+exports.errorPage=async(req,res)=>{
 res.render("404")
 }
 
@@ -422,13 +422,13 @@ res.render("404")
 
 
 //request stored cookies
-var cook =(req,res)=>{
+exports.cook =(req,res)=>{
 res.send(req.cookies)
 }
 
 
 //Logout middleware
-var Logout=(req,res,next)=>{
+exports.Logout=(req,res,next)=>{
 //clear cookies
 res.clearCookie("token")
 res.redirect("/blogs")
@@ -441,4 +441,3 @@ res.redirect("/blogs")
 
 
 
-module.exports={HomePage,likedBlog,  unlikeBlog, likeBlog, CreateBlog, CreateBlogPost ,DetailPage,EditPage,UpdateBlog,DeleteBlog,AuthUser,SignUp,SignIn, catergoryFilter,sorting, cook,Logout,errorPage}
